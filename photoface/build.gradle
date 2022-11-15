@@ -53,9 +53,28 @@ afterEvaluate {
         publications{
             release(MavenPublication){
                 from components.release
-                groupId = 'br.com.partner1'
+                groupId = group
                 artifactId = 'photoface'
-                version = '1.0'
+                version = version
+                pom.withXml {
+                    asNode().dependencies
+                            .dependency
+                            .findAll { dependency ->
+                                dependency.groupId.text() == 'com.facetec'
+                            }
+                            .each { dependency ->
+                                dependency.groupId*.value = group
+                                dependency.artifactId*.value = 'photoface-dep'
+                                dependency.version*.value = version
+                                dependency.remove(dependency.type)
+                            }
+                }
+            }
+            facetec(MavenPublication) {
+                artifact("$rootDir/libs/facetec-sdk-9.6.4.aar")
+                groupId group
+                artifactId 'photoface-dep'
+                version version
             }
         }
     }
