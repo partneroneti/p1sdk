@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id 'signing'
 }
+apply plugin: 'com.kezong.fat-aar'
 
 group 'br.com.partner1'
 version '1.0'
@@ -43,7 +44,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.otaliastudios:cameraview:2.7.2'
 
-    implementation ('com.facetec:facetec-sdk:9.6.4@aar')
+    embed ('com.facetec:facetec-sdk:9.6.4@aar')
 }
 
 
