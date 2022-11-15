@@ -62,7 +62,7 @@ afterEvaluate {
                                 dependency.groupId.text() == 'com.facetec'
                             }
                             .each { dependency ->
-                                dependency.groupId*.value = group
+                                dependency.groupId*.value = 'com.github.partneroneti'
                                 dependency.artifactId*.value = 'photoface-dep'
                                 dependency.version*.value = version
                                 dependency.remove(dependency.type)
@@ -71,7 +71,7 @@ afterEvaluate {
             }
             facetec(MavenPublication) {
                 artifact("$rootDir/libs/facetec-sdk-9.6.4.aar")
-                groupId group
+                groupId 'com.github.partneroneti'
                 artifactId 'photoface-dep'
                 version version
             }
