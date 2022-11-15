@@ -43,7 +43,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.otaliastudios:cameraview:2.7.2'
 
-    implementation ('com.facetec:facetec-sdk:9.6.4@aar')
+    compileOnly ('com.facetec:facetec-sdk:9.6.4@aar')
 }
 
 
@@ -52,22 +52,9 @@ afterEvaluate {
         publications{
             release(MavenPublication){
                 from components.release
-                groupId = group
+                groupId = 'com.github.partneroneti'
                 artifactId = 'photoface'
                 version = version
-                pom.withXml {
-                    asNode().dependencies
-                            .dependency
-                            .findAll { dependency ->
-                                dependency.groupId.text() == 'com.facetec'
-                            }
-                            .each { dependency ->
-                                dependency.groupId*.value = 'com.github.partneroneti'
-                                dependency.artifactId*.value = 'photoface-dep'
-                                dependency.version*.value = version
-                                dependency.remove(dependency.type)
-                            }
-                }
             }
             facetec(MavenPublication) {
                 artifact("$rootDir/libs/facetec-sdk-9.6.4.aar")
