@@ -43,7 +43,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.otaliastudios:cameraview:2.7.2'
 
-    compileOnly ('com.facetec:facetec-sdk:9.6.4@aar')
+    implementation 'com.github.partneroneti:photoface-dep2:0.1'
 }
 
 
