@@ -1,27 +1,27 @@
 package com.projeto.projetoexemplo;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.projeto.photoface.CallBackCapture;
 import com.projeto.photoface.CallLib;
 import com.projeto.photoface.MaskUtil;
+import com.projeto.photoface.entity.body.DocumentBody;
+import com.projeto.photoface.entity.response.AuthObj;
+import com.projeto.photoface.entity.response.CpfObj;
+import com.projeto.photoface.entity.response.LivenessResponse;
+import com.projeto.photoface.entity.response.SessionLiveResponse;
+import com.projeto.photoface.entity.response.StatusObj;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-
-    String cert = "-----BEGIN PUBLIC KEY-----\n" +
+    String certKey = "-----BEGIN PUBLIC KEY-----\n" +
             "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5PxZ3DLj+zP6T6HFgzzk\n" +
             "M77LdzP3fojBoLasw7EfzvLMnJNUlyRb5m8e5QyyJxI+wRjsALHvFgLzGwxM8ehz\n" +
             "DqqBZed+f4w33GgQXFZOS4AOvyPbALgCYoLehigLAbbCNTkeY5RDcmmSI/sbp+s6\n" +
@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
             "8QIDAQAB\n" +
             "-----END PUBLIC KEY-----";
 
-    String key = "d07TsYFnYXn0d4d2jc58BMgfhGfYPfXN";
-    String urlPadrao = "https://testapi.io/api/pgdev/";
+    String deviceKeyIdentifier = "d07TsYFnYXn0d4d2jc58BMgfhGfYPfXN";
+    String baseUrl = "https://testapi.io/api/pgdev/";
     String urlDocLive = "https://webhook.site/";
     String user = "xxx";
     String password = "xxxx";
@@ -43,30 +43,66 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        Activity act = this;
+        Context mContext = this;
         Button btn = findViewById(R.id.button2);
         EditText edt = findViewById(R.id.editTextNumber2);
 
         edt.addTextChangedListener(MaskUtil.insert(edt));
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btn.setEnabled(false);
+        btn.setOnClickListener(view -> {
+            btn.setEnabled(false);
 
-                CallLib.start(act, cert, key, urlPadrao, user, password, urlDocLive);
-                CallLib.call(edt.getText().toString(), new CallBackCapture() {
-                    @Override
-                    public void finish() {
-                        btn.setEnabled(true);
-                        Intent intent = new Intent(getApplicationContext(), StatusActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                    }
-                });
+            CallLib.start(
+                    mContext,
+                    certKey,
+                    deviceKeyIdentifier,
+                    baseUrl,
+                    user,
+                    password,
+                    urlDocLive
+            );
+            CallLib.call(edt.getText().toString(), new CallBackCapture() {
+                @Override
+                public void finish() {
+                    btn.setEnabled(true);
+                    Intent intent = new Intent(getApplicationContext(), StatusActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
 
-            }
+                @Override
+                public void onAuthObjResponse(AuthObj authObj) {
+                    Log.d("CallLib", "onAuthObjResponse: " + authObj);
+                }
+
+                @Override
+                public void onCpfObjResponse(CpfObj cpfObj) {
+                    Log.d("CallLib", "onCpfObjResponse: " + cpfObj);
+                }
+
+                @Override
+                public void onStatusObjResponse(StatusObj statusObj) {
+                    Log.d("CallLib", "onStatusObjResponse: " + statusObj);
+                }
+
+                @Override
+                public void onSessionLiveResponse(SessionLiveResponse sessionLiveResponse) {
+                    Log.d("CallLib", "onSessionLiveResponse: " + sessionLiveResponse);
+
+                }
+
+                @Override
+                public void onLivenessResponse(LivenessResponse livenessResponse) {
+                    Log.d("CallLib", "onLivenessResponse: " + livenessResponse);
+
+                }
+
+                @Override
+                public void onDocumentBodyResponse(DocumentBody documentBody) {
+                    Log.d("CallLib", "onDocumentBodyResponse: " + documentBody);
+                }
+            });
         });
     }
 }

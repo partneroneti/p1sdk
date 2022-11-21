@@ -66,12 +66,7 @@ public class StatusActivity extends AppCompatActivity {
                 public void run() {
                     if (CallLib.status == 1 || CallLib.status == 2){
                         handler.removeCallbacksAndMessages(null);
-                        CallLib.callTransactionStatus(new CallBackStatus() {
-                            @Override
-                            public void onFinish() {
-                                changeMgsStatus();
-                            }
-                        });
+                        CallLib.callTransactionStatus(() -> changeMgsStatus());
                     }else{
                         CallLib.callTransaction(new CallBackStatus() {
                             @Override
@@ -104,10 +99,6 @@ public class StatusActivity extends AppCompatActivity {
     public void changeMgsStatus() {
         TextView tv = findViewById(R.id.textView6);
         switch (CallLib.status) {
-            case 0: {
-                tv.setText("Transação em processamento");
-                break;
-            }
             case 1:
                 tv.setText("Transação Aprovada");
                 tv.setTextColor(Color.parseColor("#FF69B332"));
