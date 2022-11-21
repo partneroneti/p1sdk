@@ -48,7 +48,7 @@ public class CallLib {
     public static String mCertKey;
     public static String mDeviceKeyIdentifier;
 
-    private static String TAG = "CallLib";
+    private static final String TAG = "CallLib";
 
     public static void callActivityDocument(Context context) {
         Intent intent = new Intent(context, CameraDocumentActivity.class);
@@ -237,7 +237,7 @@ public class CallLib {
                 .baseUrl(mUrlDocLive)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        Request serviceDocumento = retrofit.create(Request.class);
+        Request serviceDocument = retrofit.create(Request.class);
 
         LivenessTBody live = new LivenessTBody();
         live.setTransactionId(transactionId);
@@ -246,7 +246,7 @@ public class CallLib {
         live.setAuditTrailImage(faceTecSessionResult.getAuditTrailCompressedBase64()[0].replaceAll("\n", ""));
         live.setLowQualityAuditTrailImage(faceTecSessionResult.getLowQualityAuditTrailCompressedBase64()[0].replaceAll("\n", ""));
         new Gson().toJson(live);
-        Call<LivenessResponse> callLive = serviceDocumento.liveness(live, "Bearer " + authResponse.getObjectReturn().getAccessToken());
+        Call<LivenessResponse> callLive = serviceDocument.liveness(live, "Bearer " + authResponse.getObjectReturn().getAccessToken());
         callLive.enqueue(new Callback<LivenessResponse>() {
             @Override
             public void onResponse(Call<LivenessResponse> call, Response<LivenessResponse> response) {
@@ -285,7 +285,7 @@ public class CallLib {
                 .baseUrl(mUrlDocLive)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        Request serviceDocumento = retrofit.create(Request.class);
+        Request serviceDocument = retrofit.create(Request.class);
 
         List<Documento> listDoc = new ArrayList<>();
         Documento frenteDoc = new Documento();
@@ -301,7 +301,7 @@ public class CallLib {
         db.setDocumentos(listDoc);
         status = 0;
 
-        Call<DocumentBody> sendDocument = serviceDocumento.sendDocument(db, "Bearer " + authResponse.getObjectReturn().getAccessToken());
+        Call<DocumentBody> sendDocument = serviceDocument.sendDocument(db, "Bearer " + authResponse.getObjectReturn().getAccessToken());
         sendDocument.enqueue(new Callback<DocumentBody>() {
             @Override
             public void onResponse(Call<DocumentBody> call, Response<DocumentBody> response) {
