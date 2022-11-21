@@ -1,4 +1,4 @@
-package com.projeto.photoface.entity.body;
+package com.projeto.projetoexemplo.api.entity.body;
 
 public class Cpf {
 

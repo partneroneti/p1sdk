@@ -1,8 +1,8 @@
-package com.projeto.photoface.entity.body;
+package com.projeto.projetoexemplo.api.entity.body;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Documento {
+public class Document {
 
     private String type;
 

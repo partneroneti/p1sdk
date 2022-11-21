@@ -23,8 +23,11 @@ public class LivenessActivity extends AppCompatActivity {
         Context context = this;
         ftsp = new FaceTecFaceScanProcessor() {
             @Override
-            public void processSessionWhileFaceTecSDKWaits(FaceTecSessionResult faceTecSessionResult, FaceTecFaceScanResultCallback faceTecFaceScanResultCallback) {
-                CallLib.callLiveSession(faceTecSessionResult, faceTecFaceScanResultCallback);
+            public void processSessionWhileFaceTecSDKWaits(
+                    FaceTecSessionResult faceTecSessionResult,
+                    FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
+            ) {
+                CallLib.liveNess(faceTecSessionResult, faceTecFaceScanResultCallback);
             }
         };
 

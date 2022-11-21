@@ -2,7 +2,6 @@ package com.projeto.photoface;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,8 +11,12 @@ import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraView;
 import com.otaliastudios.cameraview.PictureResult;
 import com.otaliastudios.cameraview.size.SizeSelectors;
+import com.projeto.photoface.callback.DocumentCallback;
+import com.projeto.photoface.entity.body.Document;
 
-public class CameraDocumentActivity extends AppCompatActivity {
+import java.util.List;
+
+public class CameraDocumentActivity extends AppCompatActivity implements DocumentCallback {
 
     PictureResult frente;
     PictureResult verso;
@@ -48,16 +51,16 @@ public class CameraDocumentActivity extends AppCompatActivity {
             }
         });
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                camera.takePictureSnapshot();
-            }
-        });
+        btn.setOnClickListener(view -> camera.takePictureSnapshot());
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onCapturedDocument(List<Document> documentList) {
+        finish();
     }
 }

@@ -1,11 +1,11 @@
-package com.projeto.photoface.entity.response;
+package com.projeto.projetoexemplo.api.entity.response;
 
-public class CpfObj {
+public class StatusObj {
 
     private Integer timeProcess;
     private Boolean success;
     private String message;
-    private CpfResponse objectReturn;
+    private StatusResponse objectReturn;
 
     public Integer getTimeProcess() {
         return timeProcess;
@@ -31,11 +31,12 @@ public class CpfObj {
         this.message = message;
     }
 
-    public CpfResponse getObjectReturn() {
+    public StatusResponse getObjectReturn() {
         return objectReturn;
     }
 
-    public void setObjectReturn(CpfResponse objectReturn) {
+    public void setObjectReturn(StatusResponse objectReturn) {
         this.objectReturn = objectReturn;
     }
+
 }

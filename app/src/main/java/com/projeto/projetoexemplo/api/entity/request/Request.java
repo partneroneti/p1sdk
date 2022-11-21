@@ -1,17 +1,15 @@
-package com.projeto.photoface.request;
+package com.projeto.projetoexemplo.api.entity.request;
 
 
-import com.projeto.photoface.entity.body.AuthenticationBody;
-import com.projeto.photoface.entity.body.Cpf;
-import com.projeto.photoface.entity.body.DocumentBody;
-import com.projeto.photoface.entity.body.LivenessTBody;
-import com.projeto.photoface.entity.response.AuthObj;
-import com.projeto.photoface.entity.response.AuthenticationResponse;
-import com.projeto.photoface.entity.response.CpfObj;
-import com.projeto.photoface.entity.response.LivenessResponse;
-import com.projeto.photoface.entity.response.LivenessStatusResponse;
-import com.projeto.photoface.entity.response.SessionLiveResponse;
-import com.projeto.photoface.entity.response.StatusObj;
+import com.projeto.projetoexemplo.api.entity.body.AuthenticationBody;
+import com.projeto.projetoexemplo.api.entity.body.Cpf;
+import com.projeto.projetoexemplo.api.entity.body.DocumentBody;
+import com.projeto.projetoexemplo.api.entity.body.LivenessTBody;
+import com.projeto.projetoexemplo.api.entity.response.AuthObj;
+import com.projeto.projetoexemplo.api.entity.response.CpfObj;
+import com.projeto.projetoexemplo.api.entity.response.LivenessResponse;
+import com.projeto.projetoexemplo.api.entity.response.SessionLiveResponse;
+import com.projeto.projetoexemplo.api.entity.response.StatusObj;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
