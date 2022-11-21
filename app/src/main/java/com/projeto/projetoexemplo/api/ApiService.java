@@ -2,8 +2,6 @@ package com.projeto.projetoexemplo.api;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import android.content.Context;
-import android.util.Base64;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -13,7 +11,6 @@ import com.projeto.projetoexemplo.api.entity.body.AuthenticationBody;
 import com.projeto.projetoexemplo.api.entity.body.Cpf;
 import com.projeto.projetoexemplo.api.entity.body.DocumentBody;
 import com.projeto.projetoexemplo.api.entity.body.LivenessTBody;
-import com.projeto.projetoexemplo.api.entity.callback.CallbackRequest;
 import com.projeto.projetoexemplo.api.entity.callback.OnDocumentListener;
 import com.projeto.projetoexemplo.api.entity.callback.OnFaceListener;
 import com.projeto.projetoexemplo.api.entity.request.Request;
@@ -45,7 +42,6 @@ public class ApiService {
 
     public static AuthObj authResponse;
     private static Cpf cpf = new Cpf();
-    private static Context mContext;
     public static String transactionId;
 
     private static CallbackStatus callback;
@@ -105,7 +101,8 @@ public class ApiService {
             public void onResponse(Call<CpfObj> call, Response<CpfObj> response) {
 
                 transactionId = response.body().getObjectReturn().getTransactionId();
-                callTransaction(() -> {});
+                callTransaction(() -> {
+                });
             }
 
             @Override
@@ -152,7 +149,7 @@ public class ApiService {
         });
     }
 
-        public static void callTransactionStatus(CallbackStatus callbackStatus) {
+    public static void callTransactionStatus(CallbackStatus callbackStatus) {
         Call<StatusObj> callStatus = serviceFace.checkStatus(transactionId, "Bearer " + authResponse.getObjectReturn().getAccessToken());
         callStatus.enqueue(new Callback<StatusObj>() {
             @Override
@@ -172,8 +169,6 @@ public class ApiService {
             String faceScan,
             String auditTrailImage,
             String lowQualityAuditTrailImage
-//            ,
-//            FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
     ) {
         Call<SessionLiveResponse> callSession = serviceFace.sessionLive("Bearer " + authResponse.getObjectReturn().getAccessToken());
         callSession.enqueue(new Callback<SessionLiveResponse>() {
@@ -194,8 +189,6 @@ public class ApiService {
             String faceScan,
             String auditTrailImage,
             String lowQualityAuditTrailImage
-//            ,
-//            FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
     ) {
 
         LivenessTBody live = new LivenessTBody();
@@ -222,15 +215,12 @@ public class ApiService {
                         }
                     }
                 }
-
-//                faceTecFaceScanResultCallback.cancel();
-//                callback.onFinish();
+                callback.onFinish();
             }
 
             @Override
             public void onFailure(Call<LivenessResponse> call, Throwable t) {
                 Log.i("err", "err");
-//                faceTecFaceScanResultCallback.cancel();
                 callback.onFinish();
             }
         });
