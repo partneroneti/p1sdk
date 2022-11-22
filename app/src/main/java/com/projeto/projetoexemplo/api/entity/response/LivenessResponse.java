@@ -1,4 +1,4 @@
-package com.projeto.photoface.entity.response;
+package com.projeto.projetoexemplo.api.entity.response;
 
 public class LivenessResponse {
 

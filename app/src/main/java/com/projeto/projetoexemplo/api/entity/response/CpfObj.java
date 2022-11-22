@@ -1,15 +1,11 @@
-package com.projeto.photoface.entity.response;
+package com.projeto.projetoexemplo.api.entity.response;
 
-import com.google.gson.annotations.SerializedName;
-
-public class SessionLiveResponse {
+public class CpfObj {
 
     private Integer timeProcess;
     private Boolean success;
     private String message;
-    private String requestId;
-    @SerializedName("objectReturn")
-    private SessionLive objectReturn;
+    private CpfResponse objectReturn;
 
     public Integer getTimeProcess() {
         return timeProcess;
@@ -35,19 +31,11 @@ public class SessionLiveResponse {
         this.message = message;
     }
 
-    public String getRequestId() {
-        return requestId;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
-    public SessionLive getObjectReturn() {
+    public CpfResponse getObjectReturn() {
         return objectReturn;
     }
 
-    public void setObjectReturn(SessionLive objectReturn) {
+    public void setObjectReturn(CpfResponse objectReturn) {
         this.objectReturn = objectReturn;
     }
 }

@@ -1,4 +1,4 @@
-package com.projeto.photoface.entity.body;
+package com.projeto.projetoexemplo.api.entity.body;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,7 +11,7 @@ public class DocumentBody {
 
     @Expose
     @SerializedName("documents")
-    private List<Documento> documentos = null;
+    private List<com.projeto.photoface.entity.body.Document> documentos = null;
 
     public String getTransactionId() {
         return transactionId;
@@ -21,11 +21,11 @@ public class DocumentBody {
         this.transactionId = transactionId;
     }
 
-    public List<Documento> getDocumentos() {
+    public List<com.projeto.photoface.entity.body.Document> getDocumentos() {
         return documentos;
     }
 
-    public void setDocumentos(List<Documento> documentos) {
+    public void setDocumentos(List<com.projeto.photoface.entity.body.Document> documentos) {
         this.documentos = documentos;
     }
 }

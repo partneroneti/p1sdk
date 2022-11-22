@@ -1,11 +1,15 @@
-package com.projeto.photoface.entity.response;
+package com.projeto.projetoexemplo.api.entity.response;
 
-public class StatusObj {
+import com.google.gson.annotations.SerializedName;
+
+public class SessionLiveResponse {
 
     private Integer timeProcess;
     private Boolean success;
     private String message;
-    private StatusResponse objectReturn;
+    private String requestId;
+    @SerializedName("objectReturn")
+    private SessionLive objectReturn;
 
     public Integer getTimeProcess() {
         return timeProcess;
@@ -31,12 +35,19 @@ public class StatusObj {
         this.message = message;
     }
 
-    public StatusResponse getObjectReturn() {
+    public String getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(String requestId) {
+        this.requestId = requestId;
+    }
+
+    public SessionLive getObjectReturn() {
         return objectReturn;
     }
 
-    public void setObjectReturn(StatusResponse objectReturn) {
+    public void setObjectReturn(SessionLive objectReturn) {
         this.objectReturn = objectReturn;
     }
-
 }
