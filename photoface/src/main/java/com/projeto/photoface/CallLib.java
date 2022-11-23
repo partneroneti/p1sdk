@@ -42,7 +42,8 @@ public class CallLib {
     public static void initFaceCapture(
             Context context,
             String certKey,
-            String deviceKeyIdentifier
+            String deviceKeyIdentifier,
+            String productionKeyText
     ) {
         mContext = context;
 
@@ -50,6 +51,7 @@ public class CallLib {
                 mContext,
                 deviceKeyIdentifier,
                 certKey,
+                productionKeyText,
                 new FaceTecSDK.InitializeCallback() {
                     @Override
                     public void onCompletion(boolean b) {

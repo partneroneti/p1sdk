@@ -112,11 +112,11 @@ public class ThemeHelpers {
             currentCustomization.getIdScanCustomization().customStaticNFCStartingAnimation = R.drawable.facetec_nfc_starting_static_vector_drawable_black;
             currentCustomization.getIdScanCustomization().customStaticNFCScanningAnimation = R.drawable.facetec_nfc_scanning_static_vector_drawable;
             currentCustomization.getIdScanCustomization().customStaticNFCSkipOrErrorAnimation = R.drawable.pseudo_fullscreen_static_unsuccess_vector_drawable;
-            currentCustomization.getIdScanCustomization().additionalReviewScreenBackgroundColors = backgroundColor;
+           /* currentCustomization.getIdScanCustomization().additionalReviewScreenBackgroundColors = backgroundColor;
             currentCustomization.getIdScanCustomization().additionalReviewScreenForegroundColor = primaryColor;
             currentCustomization.getIdScanCustomization().additionalReviewScreenImage = R.drawable.review_offblack;
             currentCustomization.getIdScanCustomization().additionalReviewScreenAnimation = 0;
-            currentCustomization.getIdScanCustomization().additionalReviewScreenStaticAnimation = 0;
+            currentCustomization.getIdScanCustomization().additionalReviewScreenStaticAnimation = 0;*/
             // OCR Confirmation Screen Customization
             currentCustomization.getOcrConfirmationCustomization().backgroundColors = backgroundColor;
             currentCustomization.getOcrConfirmationCustomization().mainHeaderDividerLineColor = secondaryColor;
@@ -189,7 +189,7 @@ public class ThemeHelpers {
             currentCustomization.getCancelButtonCustomization().setLocation(FaceTecCancelButtonCustomization.ButtonLocation.CUSTOM);
             currentCustomization.getCancelButtonCustomization().setCustomLocation(new Rect(10, 10, 25, 25));
             // Securing Camera Screen Customization (Exclusive to Photo ID Scan Only Mode)
-            currentCustomization.getInitialLoadingAnimationCustomization().backgroundColors = backgroundColor;
+           /* currentCustomization.getInitialLoadingAnimationCustomization().backgroundColors = backgroundColor;
             currentCustomization.getInitialLoadingAnimationCustomization().foregroundColor = primaryColor;
             currentCustomization.getInitialLoadingAnimationCustomization().customAnimation = R.drawable.pseudo_fullscreen_animated_activity_indicator;
             currentCustomization.getInitialLoadingAnimationCustomization().customAnimationImage = 0;
@@ -197,7 +197,7 @@ public class ThemeHelpers {
             currentCustomization.getInitialLoadingAnimationCustomization().animationRelativeScale = 1.0f;
             currentCustomization.getInitialLoadingAnimationCustomization().defaultAnimationBackgroundColor = Color.parseColor("#E6E6E6");
             currentCustomization.getInitialLoadingAnimationCustomization().defaultAnimationForegroundColor = primaryColor;
-            currentCustomization.getInitialLoadingAnimationCustomization().messageFont = boldTypeface;
+            currentCustomization.getInitialLoadingAnimationCustomization().messageFont = boldTypeface;*/
 
             // Guidance Customization -- Text Style Overrides
             // Ready Screen Header
@@ -277,10 +277,10 @@ public class ThemeHelpers {
             currentDynamicDimmingCustomization.getIdScanCustomization().customStaticNFCStartingAnimation = R.drawable.facetec_nfc_starting_static_vector_drawable_black;
             currentDynamicDimmingCustomization.getIdScanCustomization().customStaticNFCScanningAnimation = R.drawable.facetec_nfc_scanning_static_vector_drawable;
             currentDynamicDimmingCustomization.getIdScanCustomization().customStaticNFCSkipOrErrorAnimation = R.drawable.pseudo_fullscreen_static_unsuccess_offwhite_vector_drawable;
-            currentDynamicDimmingCustomization.getIdScanCustomization().additionalReviewScreenForegroundColor = primaryColor;
+           /* currentDynamicDimmingCustomization.getIdScanCustomization().additionalReviewScreenForegroundColor = primaryColor;
             currentDynamicDimmingCustomization.getIdScanCustomization().additionalReviewScreenImage = R.drawable.review_offwhite;
             currentDynamicDimmingCustomization.getIdScanCustomization().additionalReviewScreenAnimation = 0;
-            currentDynamicDimmingCustomization.getIdScanCustomization().additionalReviewScreenStaticAnimation = 0;
+            currentDynamicDimmingCustomization.getIdScanCustomization().additionalReviewScreenStaticAnimation = 0;*/
             // OCR Confirmation Screen Customization
             currentDynamicDimmingCustomization.getOcrConfirmationCustomization().mainHeaderDividerLineColor = secondaryColor;
             currentDynamicDimmingCustomization.getOcrConfirmationCustomization().mainHeaderTextColor = secondaryColor;
@@ -325,11 +325,11 @@ public class ThemeHelpers {
             // Cancel Button Customization
             currentDynamicDimmingCustomization.getCancelButtonCustomization().customImage = R.drawable.single_chevron_left_offwhite;
             // Securing Camera Screen Customization (Exclusive to Photo ID Scan Only Mode)
-            currentDynamicDimmingCustomization.getInitialLoadingAnimationCustomization().foregroundColor = primaryColor;
+            /*currentDynamicDimmingCustomization.getInitialLoadingAnimationCustomization().foregroundColor = primaryColor;
             currentDynamicDimmingCustomization.getInitialLoadingAnimationCustomization().customAnimation = R.drawable.pseudo_fullscreen_animated_activity_indicator_offwhite;
             currentDynamicDimmingCustomization.getInitialLoadingAnimationCustomization().customAnimationImage = 0;
             currentDynamicDimmingCustomization.getInitialLoadingAnimationCustomization().defaultAnimationBackgroundColor = Color.parseColor("#332B2B2B");
-            currentDynamicDimmingCustomization.getInitialLoadingAnimationCustomization().defaultAnimationForegroundColor = secondaryColor;
+            currentDynamicDimmingCustomization.getInitialLoadingAnimationCustomization().defaultAnimationForegroundColor = secondaryColor;*/
 
             // Guidance Customization -- Text Style Overrides
             // Ready Screen Header
