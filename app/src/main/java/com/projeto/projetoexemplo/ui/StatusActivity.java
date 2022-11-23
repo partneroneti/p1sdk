@@ -26,7 +26,7 @@ public class StatusActivity extends AppCompatActivity {
 
         Button btn = findViewById(R.id.button3);
         TextView tvtransactionm = findViewById(R.id.textView4);
-        tvtransactionm.setText(ApiService.transactionId);
+        tvtransactionm.setText(ApiService.transaction.getTransactionId());
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
