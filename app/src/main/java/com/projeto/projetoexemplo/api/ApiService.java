@@ -181,7 +181,6 @@ public class ApiService {
 
             }
         });
-        liveNess(faceScan, auditTrailImage, lowQualityAuditTrailImage);
     }
 
     public static void liveNess(
