@@ -10,7 +10,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.projeto.photoface.CallLib;
-import com.projeto.photoface.LivenessActivity;
 import com.projeto.photoface.MaskUtil;
 import com.projeto.photoface.callback.CallbackStatus;
 import com.projeto.photoface.entity.body.Document;
@@ -91,15 +90,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startPhotoFace() { // Inicializa a lib
-        CallLib.initFaceCapture(
+        CallLib.startFaceCapture(
                 mContext,
                 certKey,
                 deviceKeyIdentifier
         );
-    }
-
-    private void startFaceCapture() { // inicializa a captura da selfie
-        CallLib.startFaceCapture(mContext);
     }
 
     private void setFaceListener() { // cria o listener para a captura de selfie

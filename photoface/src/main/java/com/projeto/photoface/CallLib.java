@@ -18,12 +18,9 @@ import java.util.List;
 
 public class CallLib {
 
-    public static FaceCallback faceCallback;
-    public static DocumentCallback documentCallback;
-
+    private static FaceCallback faceCallback;
+    private static DocumentCallback documentCallback;
     private static Context mContext;
-    public static String transactionId;
-    private static final String TAG = "CallLib";
 
     public static void startDocumentCapture(Context context) {
         Intent intent = new Intent(context, CameraDocumentActivity.class);
@@ -32,14 +29,14 @@ public class CallLib {
         context.startActivity(intent);
     }
 
-    public static void startFaceCapture(Context context) {
+    protected static void initFaceCapture(Context context) {
         Intent intent = new Intent(context, LivenessActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }
 
-    public static void initFaceCapture(
+    public static void startFaceCapture(
             Context context,
             String certKey,
             String deviceKeyIdentifier
@@ -53,8 +50,7 @@ public class CallLib {
                 new FaceTecSDK.InitializeCallback() {
                     @Override
                     public void onCompletion(boolean b) {
-                        Log.i(TAG, " start() - onCompletion");
-                        startFaceCapture(mContext);
+                        initFaceCapture(mContext);
                     }
                 });
         ThemeHelpers.setAppTheme(mContext, "Pseudo-Fullscreen");
@@ -69,7 +65,7 @@ public class CallLib {
     }
 
 
-    public static void liveNess(
+    protected static void liveNess(
             FaceTecSessionResult faceTecSessionResult,
             FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
     ) {
@@ -81,7 +77,7 @@ public class CallLib {
         faceTecFaceScanResultCallback.cancel();
     }
 
-    public static void sendDocument(PictureResult frente, PictureResult verso) {
+    protected static void sendDocument(PictureResult frente, PictureResult verso) {
 
         List<Document> listDoc = new ArrayList<>();
         Document frenteDoc = new Document();
