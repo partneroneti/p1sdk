@@ -12,6 +12,7 @@ import com.facetec.sdk.FaceTecCancelButtonCustomization;
 import com.facetec.sdk.FaceTecCustomization;
 import com.facetec.sdk.FaceTecSDK;
 import com.facetec.sdk.FaceTecSecurityWatermarkImage;
+import com.facetec.sdk.FaceTecVocalGuidanceCustomization;
 
 public class Config {
 
@@ -58,7 +59,8 @@ public class Config {
         // Set a default customization
         FaceTecCustomization defaultCustomization = new FaceTecCustomization();
 
-        
+        defaultCustomization.vocalGuidanceCustomization.mode = FaceTecVocalGuidanceCustomization.VocalGuidanceMode.NO_VOCAL_GUIDANCE;
+
         // Set Frame Customization
         defaultCustomization.getFrameCustomization().cornerRadius = frameCornerRadius;
         defaultCustomization.getFrameCustomization().backgroundColor = frameColor;
