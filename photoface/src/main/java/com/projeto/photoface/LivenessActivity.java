@@ -31,7 +31,12 @@ public class LivenessActivity extends AppCompatActivity {
             }
         };
 
-        FaceTecSessionActivity.createAndLaunchSession(context, ftsp);
+        Bundle extras = getIntent().getExtras();
+
+        String sessionToken = extras.getString("sessionToken");
+
+
+        FaceTecSessionActivity.createAndLaunchSession(context, ftsp, sessionToken);
     }
 
     @Override

@@ -29,10 +29,11 @@ public class CallLib {
         context.startActivity(intent);
     }
 
-    protected static void initFaceCapture(Context context) {
+    protected static void initFaceCapture(Context context, String sessionToken) {
         Intent intent = new Intent(context, LivenessActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("sessionToken",sessionToken);
         context.startActivity(intent);
     }
 
@@ -40,7 +41,8 @@ public class CallLib {
             Context context,
             String certKey,
             String deviceKeyIdentifier,
-            String productionKeyText
+            String productionKeyText,
+            String sessionToken
     ) {
         mContext = context;
 
@@ -52,7 +54,7 @@ public class CallLib {
                 new FaceTecSDK.InitializeCallback() {
                     @Override
                     public void onCompletion(boolean b) {
-                        initFaceCapture(mContext);
+                        initFaceCapture(mContext,sessionToken);
                     }
                 });
         ThemeHelpers.setAppTheme(mContext, "Pseudo-Fullscreen");
@@ -71,9 +73,9 @@ public class CallLib {
             FaceTecSessionResult faceTecSessionResult,
             FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
     ) {
-        String faceScan = Base64.encodeToString(faceTecSessionResult.getFaceScan(), Base64.DEFAULT).replaceAll("\n", "");
-        String auditTrailImage = faceTecSessionResult.getAuditTrailCompressedBase64()[0].replaceAll("\n", "");
-        String lowQualityAuditTrailImage = faceTecSessionResult.getLowQualityAuditTrailCompressedBase64()[0].replaceAll("\n", "");
+        String faceScan = faceTecSessionResult.getFaceScanBase64();
+        String auditTrailImage = faceTecSessionResult.getAuditTrailCompressedBase64()[0];
+        String lowQualityAuditTrailImage = faceTecSessionResult.getLowQualityAuditTrailCompressedBase64()[0];
 
         faceCallback.onCapturedFace(faceScan, auditTrailImage, lowQualityAuditTrailImage);
         faceTecFaceScanResultCallback.cancel();
