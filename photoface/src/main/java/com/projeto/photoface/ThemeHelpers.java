@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 
+import com.facetec.sdk.FaceTecVocalGuidanceCustomization;
 import com.projeto.photoface.R;
 import com.facetec.sdk.FaceTecCancelButtonCustomization;
 import com.facetec.sdk.FaceTecCustomization;
@@ -26,7 +27,7 @@ public class ThemeHelpers {
 
     public static FaceTecCustomization getCustomizationForTheme(Context context) {
         FaceTecCustomization currentCustomization = new FaceTecCustomization();
-
+        currentCustomization.vocalGuidanceCustomization.mode = FaceTecVocalGuidanceCustomization.VocalGuidanceMode.NO_VOCAL_GUIDANCE;
         int[] retryScreenSlideshowImages = new int[]{R.drawable.ideal_image_1, R.drawable.ideal_image_2, R.drawable.ideal_image_3, R.drawable.ideal_image_4, R.drawable.ideal_image_5};
 
 
@@ -225,7 +226,7 @@ public class ThemeHelpers {
 
     static FaceTecCustomization getDynamicDimmingCustomizationForTheme(Context context, String theme) {
         FaceTecCustomization currentDynamicDimmingCustomization = getCustomizationForTheme(context);
-
+        currentDynamicDimmingCustomization.vocalGuidanceCustomization.mode = FaceTecVocalGuidanceCustomization.VocalGuidanceMode.NO_VOCAL_GUIDANCE;
         int[] retryScreenSlideshowImages = new int[]{R.drawable.ideal_image_1, R.drawable.ideal_image_2, R.drawable.ideal_image_3, R.drawable.ideal_image_4, R.drawable.ideal_image_5};
 
 

@@ -55,7 +55,7 @@
     <string name="FaceTec_instructions_message_ready_1">Enquadre seu rosto no formato oval,</string>
     <string name="FaceTec_instructions_message_ready_2">Pressione Estou pronto &amp; Aproxime-se</string>
 
-    <string name="FaceTec_result_facescan_upload_message">Enviando\nEncrypted\n3D FaceScan</string>
+    <string name="FaceTec_result_facescan_upload_message">Processando..</string>
     <string name="FaceTec_result_success_message">Sucesso</string>
     <string name="FaceTec_result_idscan_upload_message">Carregando\nCriptografado\nDigitalização</string>
     <string name="FaceTec_result_nfc_upload_message">Enviando\nCriptografado\nDetalhes NFC</string>
@@ -78,6 +78,5 @@
     <string name="FaceTec_retry_instruction_message_3">Muito embaçada, limpe sua câmera</string>
     <string name="FaceTec_retry_your_image_label">Sua Selfie</string>
     <string name="FaceTec_retry_ideal_image_label">Pose Ideal</string>
-
 
 </resources>

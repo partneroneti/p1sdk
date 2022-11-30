@@ -80,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
     private void startPhotoFace() { // Inicializa a lib
         CallLib.startFaceCapture(
                 mContext,
-                ApiService.transaction.getCertificate(),
-                ApiService.transaction.getDeviceKeyIdentifier(),
-                ApiService.transaction.getProductionKeyText(),
+                ApiService.facetecCredentialsObj.getCertificate(),
+                ApiService.facetecCredentialsObj.getDeviceKeyIdentifier(),
+                ApiService.facetecCredentialsObj.getProductionKeyText(),
                 ApiService.session
         );
     }
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    private void logDoc(List<com.projeto.photoface.entity.body.Document> documentList) {
+    private void logDoc(List<Document> documentList) {
         List<Document> list = documentList;
         list.get(0).getType();
 

@@ -15,12 +15,14 @@ import com.projeto.projetoexemplo.api.entity.body.LivenessTBody;
 import com.projeto.projetoexemplo.api.entity.callback.OnDocumentListener;
 import com.projeto.projetoexemplo.api.entity.callback.OnFaceListener;
 import com.projeto.projetoexemplo.api.entity.request.Request;
-import com.projeto.projetoexemplo.api.entity.response.AuthObj;
-import com.projeto.projetoexemplo.api.entity.response.CpfObj;
+import com.projeto.projetoexemplo.api.entity.response.FacetecCredentialsResponse;
+import com.projeto.projetoexemplo.api.entity.response.obj.FacetecCredentialsObj;
+import com.projeto.projetoexemplo.api.entity.response.AuthenticationResponse;
+import com.projeto.projetoexemplo.api.entity.response.obj.CpfObj;
 import com.projeto.projetoexemplo.api.entity.response.CpfResponse;
 import com.projeto.projetoexemplo.api.entity.response.LivenessResponse;
 import com.projeto.projetoexemplo.api.entity.response.SessionLiveResponse;
-import com.projeto.projetoexemplo.api.entity.response.StatusObj;
+import com.projeto.projetoexemplo.api.entity.response.StatusResponse;
 
 import java.util.List;
 
@@ -32,17 +34,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
-    private static final String baseUrl =  "";
-    private static final String user = "";
-    private static final String password = "";
+    private static final String baseUrl =  "https://integracao-sodexo-desenvolvimento.partner1.com.br/api/";
+    private static final String user = "admin";
+    private static final String password = "lalala";
 
     private static final Request service = getRetrofit(baseUrl).create(Request.class);
 
     public static Integer status;
 
-    public static AuthObj authResponse;
+    public static AuthenticationResponse authResponse;
     private static Cpf cpf = new Cpf();
     public static CpfResponse transaction;
+    public static FacetecCredentialsObj facetecCredentialsObj;
     public static String session;
     private static CallbackStatus callback;
 
@@ -77,18 +80,18 @@ public class ApiService {
         ab.setGrantType("password");
         ab.setPassword(password);
         ab.setUsername(user);
-        Call<AuthObj> callAuth = service.authentication(ab);
+        Call<AuthenticationResponse> callAuth = service.authentication(ab);
 
-        callAuth.enqueue(new Callback<AuthObj>() {
+        callAuth.enqueue(new Callback<AuthenticationResponse>() {
             @Override
-            public void onResponse(Call<AuthObj> call, Response<AuthObj> response) {
+            public void onResponse(Call<AuthenticationResponse> call, Response<AuthenticationResponse> response) {
 
                 authResponse = response.body();
                 callCpf();
             }
 
             @Override
-            public void onFailure(Call<AuthObj> call, Throwable t) {
+            public void onFailure(Call<AuthenticationResponse> call, Throwable t) {
                 Log.w(TAG, "onFailure");
             }
         });
@@ -102,20 +105,7 @@ public class ApiService {
 
                 transaction = response.body().getObjectReturn();
 
-                //cria a sessao
-                createSession(ApiService.transaction.getDeviceKeyIdentifier(),
-                        new Runnable(){
-
-                            @Override
-                            public void run() {
-
-                                callTransaction(() -> {
-                                });
-                            }
-                        });
-
-
-
+                getFacetecCredentials();
 
             }
 
@@ -142,14 +132,42 @@ public class ApiService {
         });
     }
 
+    public static void getFacetecCredentials(){
+        Call<FacetecCredentialsResponse> callFacetecCredentialsResponse = service.facetecCredentials("Bearer " + authResponse.getObjectReturn().getAccessToken());
+        callFacetecCredentialsResponse.enqueue(new Callback<FacetecCredentialsResponse>() {
+            @Override
+            public void onResponse(Call<FacetecCredentialsResponse> call, Response<FacetecCredentialsResponse> response) {
+
+                facetecCredentialsObj = response.body().getObjectReturn();
+
+                //cria a sessao
+                createSession(ApiService.facetecCredentialsObj.getDeviceKeyIdentifier(),
+                        new Runnable(){
+
+                            @Override
+                            public void run() {
+
+                                callTransaction(() -> {
+                                });
+                            }
+                        });
+            }
+
+            @Override
+            public void onFailure(Call<FacetecCredentialsResponse> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
+
     public static void callTransaction(CallbackStatus callbackStatus) {
-        Call<StatusObj> callStatus = service.checkStatus(
+        Call<StatusResponse> callStatus = service.checkStatus(
                 transaction.getTransactionId(),
                 "Bearer " + authResponse.getObjectReturn().getAccessToken()
         );
-        callStatus.enqueue(new Callback<StatusObj>() {
+        callStatus.enqueue(new Callback<StatusResponse>() {
             @Override
-            public void onResponse(Call<StatusObj> call, Response<StatusObj> response) {
+            public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
 
                 status = response.body().getObjectReturn().getResult().getStatus();
                 switch (status) {
@@ -173,23 +191,23 @@ public class ApiService {
             }
 
             @Override
-            public void onFailure(Call<StatusObj> call, Throwable t) {
+            public void onFailure(Call<StatusResponse> call, Throwable t) {
 
             }
         });
     }
 
     public static void callTransactionStatus(CallbackStatus callbackStatus) {
-        Call<StatusObj> callStatus = service.checkStatus(transaction.getTransactionId(), "Bearer " + authResponse.getObjectReturn().getAccessToken());
-        callStatus.enqueue(new Callback<StatusObj>() {
+        Call<StatusResponse> callStatus = service.checkStatus(transaction.getTransactionId(), "Bearer " + authResponse.getObjectReturn().getAccessToken());
+        callStatus.enqueue(new Callback<StatusResponse>() {
             @Override
-            public void onResponse(Call<StatusObj> call, Response<StatusObj> response) {
+            public void onResponse(Call<StatusResponse> call, Response<StatusResponse> response) {
                 status = response.body().getObjectReturn().getResult().getStatus();
                 callbackStatus.onFinish();
             }
 
             @Override
-            public void onFailure(Call<StatusObj> call, Throwable t) {
+            public void onFailure(Call<StatusResponse> call, Throwable t) {
 
             }
         });
@@ -226,7 +244,7 @@ public class ApiService {
         live.setAuditTrailImage(auditTrailImage);
         live.setLowQualityAuditTrailImage(lowQualityAuditTrailImage);
         live.setSessionId(CallLib.createUserAgentForSession(session));
-        live.setDeviceKey(transaction.getDeviceKeyIdentifier());
+        live.setDeviceKey(facetecCredentialsObj.getDeviceKeyIdentifier());
         new Gson().toJson(live);
         Call<LivenessResponse> callLive = service.liveness(live, "Bearer " + authResponse.getObjectReturn().getAccessToken());
         callLive.enqueue(new Callback<LivenessResponse>() {
