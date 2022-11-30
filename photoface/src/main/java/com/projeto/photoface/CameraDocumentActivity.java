@@ -26,7 +26,6 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_document);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        getSupportActionBar().hide();
         CameraView camera = findViewById(R.id.cameraDoc);
         TextView tv = findViewById(R.id.textView2);
         Button btn = findViewById(R.id.button);
