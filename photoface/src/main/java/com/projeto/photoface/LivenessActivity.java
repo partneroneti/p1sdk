@@ -19,7 +19,6 @@ public class LivenessActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         Context context = this;
         ftsp = new FaceTecFaceScanProcessor() {
             @Override
