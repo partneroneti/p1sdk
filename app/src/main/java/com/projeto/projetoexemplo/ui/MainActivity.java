@@ -2,12 +2,14 @@ package com.projeto.projetoexemplo.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.projeto.photoface.CallLib;
 import com.projeto.photoface.MaskUtil;
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
-        btn = findViewById(R.id.button2);
+        btn = findViewById(R.id.btnBack);
         edt = findViewById(R.id.editTextNumber2);
 
         mContext = this;
@@ -43,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(view -> {
             btn.setEnabled(false);
 
-            initApi();
+//            initApi();
+            startDocumentCapture(); // TODO remover
         });
     }
 
@@ -103,7 +106,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startDocumentCapture() { // inicializa a captura do documento
-        CallLib.startDocumentCapture(mContext);
+        CallLib.startDocumentCapture(
+                mContext,
+                "#ED3245", // passar o hexadecimal da cor
+                "#C6C6C6", // passar o hexadecimal da cor
+                "#" + Integer.toHexString(ContextCompat.getColor(mContext, R.color.text_color)) // passar o hexadecimal da cor (exemplo de como pegar a cor definida no color.xml)
+        );
     }
 
     private void setDocumentListener() {

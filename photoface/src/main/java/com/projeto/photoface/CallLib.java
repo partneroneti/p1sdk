@@ -22,10 +22,18 @@ public class CallLib {
     private static DocumentCallback documentCallback;
     private static Context mContext;
 
-    public static void startDocumentCapture(Context context) {
+    public static void startDocumentCapture(
+            Context context,
+            String buttonHexaColor,
+            String buttonTextHexaColor,
+            String textHexaColor
+    ) {
         Intent intent = new Intent(context, CameraDocumentActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(CameraDocumentActivity.BUTTON_COLOR, buttonHexaColor);
+        intent.putExtra(CameraDocumentActivity.BUTTON_TEXT_COLOR, buttonTextHexaColor);
+        intent.putExtra(CameraDocumentActivity.TEXT_COLOR, textHexaColor);
         context.startActivity(intent);
     }
 

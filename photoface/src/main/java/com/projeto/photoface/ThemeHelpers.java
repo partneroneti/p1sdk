@@ -11,7 +11,7 @@ import com.facetec.sdk.FaceTecCancelButtonCustomization;
 import com.facetec.sdk.FaceTecCustomization;
 import com.facetec.sdk.FaceTecSDK;
 
-public class ThemeHelpers {
+class ThemeHelpers {
 
     public static void setAppTheme(Context context, String theme) {
         Config.currentCustomization = getCustomizationForTheme(context);
