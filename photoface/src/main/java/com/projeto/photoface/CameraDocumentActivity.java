@@ -30,8 +30,6 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
     protected static final String BUTTON_COLOR = "BUTTON_COLOR";
     protected static final String BUTTON_TEXT_COLOR = "BUTTON_TEXT_COLOR";
     protected static final String TEXT_COLOR = "TEXT_COLOR";
-    protected static final String TITLE_FRONT = "Frente";
-    protected static final String TITLE_BACK = "Verso";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +43,7 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
 
         setLayoutCustomColor();
 
-        textTitle.setText(TITLE_FRONT);
+        textTitle.setText(getString(R.string.photoface_document_title_front_text));
         camera.setLifecycleOwner(this);
         camera.setPictureSize(SizeSelectors.smallest());
         camera.addCameraListener(new CameraListener() {
@@ -53,7 +51,7 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
             public void onPictureTaken(PictureResult result) {
                 if (frente == null) {
                     frente = result;
-                    textTitle.setText(TITLE_BACK);
+                    textTitle.setText(R.string.photoface_document_title_back_text);
                 } else {
                     verso = result;
                 }

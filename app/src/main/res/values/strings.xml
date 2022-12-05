@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Partner One</string>
+
+    <!-- Document Capture -> customização dos textos da tela, se não colocar essas tag o sdk usa o texto default -->
+    <string name="photoface_document_capture_button_text">Fotografar</string>
+    <string name="photoface_document_back_button_text">Voltar</string>
+    <string name="photoface_document_title_front_text">Frente</string>
+    <string name="photoface_document_title_back_text">Verso</string>
+
 </resources>

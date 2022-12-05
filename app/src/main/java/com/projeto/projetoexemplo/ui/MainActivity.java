@@ -2,7 +2,6 @@ package com.projeto.projetoexemplo.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -15,8 +14,8 @@ import com.projeto.photoface.CallLib;
 import com.projeto.photoface.MaskUtil;
 import com.projeto.photoface.callback.CallbackStatus;
 import com.projeto.photoface.entity.body.Document;
-import com.projeto.projetoexemplo.api.ApiService;
 import com.projeto.projetoexemplo.R;
+import com.projeto.projetoexemplo.api.ApiService;
 import com.projeto.projetoexemplo.api.entity.callback.OnDocumentListener;
 import com.projeto.projetoexemplo.api.entity.callback.OnFaceListener;
 
@@ -45,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(view -> {
             btn.setEnabled(false);
 
-//            initApi();
-            startDocumentCapture(); // TODO remover
+            initApi();
         });
     }
 
@@ -109,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
         CallLib.startDocumentCapture(
                 mContext,
                 "#ED3245", // passar o hexadecimal da cor
-                "#C6C6C6", // passar o hexadecimal da cor
-                "#" + Integer.toHexString(ContextCompat.getColor(mContext, R.color.text_color)) // passar o hexadecimal da cor (exemplo de como pegar a cor definida no color.xml)
+                "#ffffff", // passar o hexadecimal da cor
+                "#" + Integer.toHexString(ContextCompat.getColor(mContext, R.color.text_color))// passar o hexadecimal da cor (exemplo de como pegar a cor definida no color.xml)
         );
     }
 

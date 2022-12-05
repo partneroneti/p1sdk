@@ -3,7 +3,6 @@ package com.projeto.photoface;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Base64;
-import android.util.Log;
 
 import com.facetec.sdk.FaceTecFaceScanResultCallback;
 import com.facetec.sdk.FaceTecSDK;

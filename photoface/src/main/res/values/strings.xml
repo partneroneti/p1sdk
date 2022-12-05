@@ -79,4 +79,11 @@
     <string name="FaceTec_retry_your_image_label">Sua Selfie</string>
     <string name="FaceTec_retry_ideal_image_label">Pose Ideal</string>
 
+
+    <!-- Document Capture -->
+    <string name="photoface_document_capture_button_text">Fotografar</string>
+    <string name="photoface_document_back_button_text">Voltar</string>
+    <string name="photoface_document_title_front_text">Frente</string>
+    <string name="photoface_document_title_back_text">Verso</string>
+
 </resources>
