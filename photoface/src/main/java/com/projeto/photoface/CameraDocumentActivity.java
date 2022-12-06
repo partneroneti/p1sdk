@@ -2,12 +2,13 @@ package com.projeto.photoface;
 
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.BlendModeColorFilterCompat;
+import androidx.core.graphics.BlendModeCompat;
 
 import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraView;
@@ -73,7 +74,12 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
         String buttonTextColor = getIntent().getStringExtra(BUTTON_TEXT_COLOR);
         String textColor = getIntent().getStringExtra(TEXT_COLOR);
 
-        btnCapture.getBackground().setColorFilter(Color.parseColor(buttonColor), PorterDuff.Mode.SRC_OVER);
+        btnCapture.getBackground().setColorFilter(
+                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                        Color.parseColor(buttonColor),
+                        BlendModeCompat.SRC_ATOP
+                )
+        );
         btnCapture.setTextColor(Color.parseColor(buttonTextColor));
         textTitle.setTextColor(Color.parseColor(textColor));
         btnBack.setTextColor(Color.parseColor(textColor));
