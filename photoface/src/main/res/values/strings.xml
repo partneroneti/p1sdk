@@ -51,9 +51,9 @@
     <string name="FaceTec_idscan_nfc_status_skipped_message">Verificação NFC\nIgnorado</string>
 
     <string name="FaceTec_instructions_header_ready_1">Prepare-se para</string>
-    <string name="FaceTec_instructions_header_ready_2">Sua selfie em vídeo</string>
-    <string name="FaceTec_instructions_message_ready_1">Enquadre seu rosto no formato oval,</string>
-    <string name="FaceTec_instructions_message_ready_2">Pressione Estou pronto &amp; Aproxime-se</string>
+    <string name="FaceTec_instructions_header_ready_2">para começar.</string>
+    <string name="FaceTec_instructions_message_ready_1">Enquadre seu rosto na marcação, pressione</string>
+    <string name="FaceTec_instructions_message_ready_2">o botão abaixo e siga as indicações na tela.</string>
 
     <string name="FaceTec_result_facescan_upload_message">Processando..</string>
     <string name="FaceTec_result_success_message">Sucesso</string>
