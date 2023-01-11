@@ -40,7 +40,7 @@ public class CallLib {
         Intent intent = new Intent(context, LivenessActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("sessionToken",sessionToken);
+        intent.putExtra("sessionToken", sessionToken);
         context.startActivity(intent);
     }
 
@@ -61,7 +61,7 @@ public class CallLib {
                 new FaceTecSDK.InitializeCallback() {
                     @Override
                     public void onCompletion(boolean b) {
-                        initFaceCapture(mContext,sessionToken);
+                        initFaceCapture(mContext, sessionToken);
                     }
                 });
         ThemeHelpers.setAppTheme(mContext, "Pseudo-Fullscreen");
@@ -103,11 +103,11 @@ public class CallLib {
         documentCallback.onCapturedDocument(listDoc);
     }
 
-        public static String createUserAgentForNewSession(){
-            return FaceTecSDK.createFaceTecAPIUserAgentString("");
-        }
+    public static String createUserAgentForNewSession() {
+        return FaceTecSDK.createFaceTecAPIUserAgentString("");
+    }
 
-    public static String createUserAgentForSession(String sessionId){
+    public static String createUserAgentForSession(String sessionId) {
         return FaceTecSDK.createFaceTecAPIUserAgentString(sessionId);
     }
 
