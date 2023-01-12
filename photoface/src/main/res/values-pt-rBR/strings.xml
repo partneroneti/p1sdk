@@ -1,0 +1,101 @@
+<resources>
+    <string name="FaceTec_accessibility_cancel_button">Cancelar</string>
+    <string name="FaceTec_accessibility_torch_button">Alternar luz</string>
+
+    <string name="FaceTec_action_ok">OK</string>
+    <string name="FaceTec_action_im_ready">ESTOU PRONTO</string>
+    <string name="FaceTec_action_try_again">TENTE NOVAMENTE</string>
+    <string name="FaceTec_action_continue">CONTINUAR</string>
+    <string name="FaceTec_action_take_photo">TIRAR FOTO</string>
+    <string name="FaceTec_action_retake_photo">RETOMAR</string>
+    <string name="FaceTec_action_accept_photo">ACEITAR</string>
+    <string name="FaceTec_action_confirm">CONFIRMAR INFORMAÇÕES</string>
+    <string name="FaceTec_action_scan_nfc">SCAN ePASSPORT</string>
+    <string name="FaceTec_action_scan_nfc_card">SCAN ID CARD</string>
+    <string name="FaceTec_action_skip_nfc">PULE ESTA ETAPA</string>
+
+    <string name="FaceTec_camera_permission_header">Ativar câmera</string>
+    <string name="FaceTec_camera_permission_message_enroll">Por favor, clique no botão abaixo para ativar sua câmera selfie.</string>
+    <string name="FaceTec_camera_permission_message_auth">Sua câmera está desativada. Toque abaixo para editar suas configurações.</string>
+    <string name="FaceTec_camera_permission_enable_camera">HABILITAR CÂMERA</string>
+    <string name="FaceTec_camera_permission_launch_settings">CONFIGURAÇÕES DE LANÇAMENTO</string>
+
+    <string name="FaceTec_feedback_center_face">Centralizar seu rosto</string>
+    <string name="FaceTec_feedback_face_not_found">Enquadre seu rosto</string>
+    <string name="FaceTec_feedback_face_not_looking_straight_ahead">Olhe em Frente</string>
+    <string name="FaceTec_feedback_face_not_upright">Mantenha a cabeça reta</string>
+    <string name="FaceTec_feedback_hold_steady">Mantenha firme</string>
+    <string name="FaceTec_feedback_move_phone_away">Afastar</string>
+    <string name="FaceTec_feedback_move_phone_closer">Mover mais perto</string>
+    <string name="FaceTec_feedback_move_phone_to_eye_level">Mover a câmera para o nível dos olhos</string>
+    <string name="FaceTec_feedback_use_even_lighting">Iluminar o rosto de forma mais uniforme</string>
+
+    <string name="FaceTec_idscan_type_selection_header">Prepare para digitalizar\nSeu documento de identificação</string>
+    <string name="FaceTec_idscan_capture_tap_to_focus_message">Toque na tela para focar</string>
+    <string name="FaceTec_idscan_capture_hold_steady_message">Por favor, mantenha estável</string>
+    <string name="FaceTec_idscan_capture_id_front_instruction_message">Mostrar frente do ID</string>
+    <string name="FaceTec_idscan_capture_id_back_instruction_message">Mostrar o verso do ID</string>
+    <string name="FaceTec_idscan_review_id_front_instruction_message">Confirmar que a foto está limpa &amp; Legível</string>
+    <string name="FaceTec_idscan_review_id_back_instruction_message">Confirmar que a foto está limpa &amp; Legível</string>
+    <string name="FaceTec_idscan_ocr_confirmation_main_header">Revisar &amp; Confirmar</string>
+    <string name="FaceTec_idscan_nfc_status_disabled_message">Ative NFC\nNas configurações do seu dispositivo\nPara continuar</string>
+    <string name="FaceTec_idscan_nfc_status_ready_message">Prepare-se para digitalizar\nSeu chip de passaporte eletrônico</string>
+    <string name="FaceTec_idscan_nfc_card_status_ready_message">Prepare-se para digitalizar\nO chip do seu cartão de identificação</string>
+    <string name="FaceTec_idscan_nfc_status_starting_message">Segure o telefone para trás\nTampa do ePassport\nto Digitalize o chip NFC</string>
+    <string name="FaceTec_idscan_nfc_card_status_starting_message">Segure o telefone no cartão de identificação\nto digitalize o chip NFC</string>
+    <string name="FaceTec_idscan_nfc_status_scanning_message">Mantenha estável,\nDigitalizando chip NFC</string>
+    <string name="FaceTec_idscan_nfc_status_weak_connection_message">Vamos tentar\nOutra verificação</string>
+    <string name="FaceTec_idscan_nfc_status_finished_with_success_message">Digitalização de Documentos\nConcluído</string>
+    <string name="FaceTec_idscan_nfc_status_finished_with_error_message">Chip de passaporte eletrônico\nIlegível</string>
+    <string name="FaceTec_idscan_nfc_card_status_finished_with_error_message">Chip do cartão de identificação\nIlegível</string>
+    <string name="FaceTec_idscan_nfc_status_skipped_message">Verificação NFC\nIgnorado</string>
+
+    <string name="FaceTec_instructions_header_ready_1">Prepare-se para</string>
+    <string name="FaceTec_instructions_header_ready_2">para começar.</string>
+    <string name="FaceTec_instructions_message_ready_1">Enquadre seu rosto na marcação, pressione</string>
+    <string name="FaceTec_instructions_message_ready_2">o botão abaixo e siga as indicações na tela.</string>
+
+    <string name="FaceTec_result_facescan_upload_message">Processando..</string>
+    <string name="FaceTec_result_success_message">Sucesso</string>
+    <string name="FaceTec_result_idscan_upload_message">Carregando\nCriptografado\nDigitalização</string>
+    <string name="FaceTec_result_nfc_upload_message">Enviando\nCriptografado\nDetalhes NFC</string>
+    <string name="FaceTec_result_idscan_unsuccess_message">Foto de identificação\nNão correspondeu\nRosto do usuário</string>
+    <string name="FaceTec_result_idscan_success_front_side_message">Sua Face 3D\nCombinou com sua ID</string>
+    <string name="FaceTec_result_idscan_success_front_side_back_next_message">Sua Face 3D\nCombinou com sua ID</string>
+    <string name="FaceTec_result_idscan_success_back_side_message">Verso do ID capturado</string>
+    <string name="FaceTec_result_idscan_success_user_confirmation_message">Verificação de ID\nCompleta</string>
+    <string name="FaceTec_result_idscan_success_nfc_message">Informações do chip NFC\nVerificado</string>
+    <string name="FaceTec_result_idscan_skip_or_error_nfc_message">Informações de verificação NFC\nCarregado</string>
+    <string name="FaceTec_result_idscan_retry_face_did_not_match_message">O rosto não correspondeu\nAltamente o suficiente</string>
+    <string name="FaceTec_result_idscan_retry_id_not_fully_visible_message">Documento de ID\nNão totalmente visível</string>
+    <string name="FaceTec_result_idscan_retry_ocr_results_not_good_enough_message">Texto de ID não legível</string>
+    <string name="FaceTec_result_idscan_retry_id_type_not_supported_message">Tipo de ID não suportado\nPor favor, use um ID diferente</string>
+
+    <string name="FaceTec_retry_header">Vamos tentar de novo</string>
+    <string name="FaceTec_retry_subheader_message">Precisamos de uma selfie nítida</string>
+    <string name="FaceTec_retry_instruction_message_1">Expressão neutra, sem sorriso</string>
+    <string name="FaceTec_retry_instruction_message_2">Sem brilho ou iluminação extrema</string>
+    <string name="FaceTec_retry_instruction_message_3">Muito embaçada, limpe sua câmera</string>
+    <string name="FaceTec_retry_your_image_label">Sua Selfie</string>
+    <string name="FaceTec_retry_ideal_image_label">Pose Ideal</string>
+
+
+    <string name="FaceTec_presession_frame_your_face">Enquadre seu rosta na área de captura</string>
+    <string name="FaceTec_presession_position_face_straight_in_oval">Olhe para frente</string>
+    <string name="FaceTec_presession_hold_steady_3">Mantenha por: 3</string>
+    <string name="FaceTec_presession_hold_steady_2">Mantenha por: 2</string>
+    <string name="FaceTec_presession_hold_steady_1">Mantenha por: 1</string>
+    <string name="FaceTec_presession_eyes_straight_ahead">Olhe para frente</string>
+    <string name="FaceTec_presession_remove_dark_glasses">Remova os óculos escuros</string>
+    <string name="FaceTec_presession_neutral_expression">Expressão neutra, sem sorriso</string>
+    <string name="FaceTec_presession_conditions_too_bright">Ambiente muito claro</string>
+    <string name="FaceTec_presession_brighten_your_environment">Ilumine seu ambiente</string>
+
+
+    <!-- Document Capture -->
+    <string name="photoface_document_capture_button_text">Fotografar</string>
+    <string name="photoface_document_back_button_text">Voltar</string>
+    <string name="photoface_document_title_front_text">Frente</string>
+    <string name="photoface_document_title_back_text">Verso</string>
+
+</resources>
