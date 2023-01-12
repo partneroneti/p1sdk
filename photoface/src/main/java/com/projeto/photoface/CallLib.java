@@ -3,7 +3,6 @@ package com.projeto.photoface;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Base64;
-import android.util.Log;
 
 import com.facetec.sdk.FaceTecFaceScanResultCallback;
 import com.facetec.sdk.FaceTecSDK;
@@ -22,10 +21,18 @@ public class CallLib {
     private static DocumentCallback documentCallback;
     private static Context mContext;
 
-    public static void startDocumentCapture(Context context) {
+    public static void startDocumentCapture(
+            Context context,
+            String buttonHexaColor,
+            String buttonTextHexaColor,
+            String textHexaColor
+    ) {
         Intent intent = new Intent(context, CameraDocumentActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(CameraDocumentActivity.BUTTON_COLOR, buttonHexaColor);
+        intent.putExtra(CameraDocumentActivity.BUTTON_TEXT_COLOR, buttonTextHexaColor);
+        intent.putExtra(CameraDocumentActivity.TEXT_COLOR, textHexaColor);
         context.startActivity(intent);
     }
 
@@ -33,7 +40,7 @@ public class CallLib {
         Intent intent = new Intent(context, LivenessActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("sessionToken",sessionToken);
+        intent.putExtra("sessionToken", sessionToken);
         context.startActivity(intent);
     }
 
@@ -54,7 +61,7 @@ public class CallLib {
                 new FaceTecSDK.InitializeCallback() {
                     @Override
                     public void onCompletion(boolean b) {
-                        initFaceCapture(mContext,sessionToken);
+                        initFaceCapture(mContext, sessionToken);
                     }
                 });
         ThemeHelpers.setAppTheme(mContext, "Pseudo-Fullscreen");
@@ -96,11 +103,11 @@ public class CallLib {
         documentCallback.onCapturedDocument(listDoc);
     }
 
-        public static String createUserAgentForNewSession(){
-            return FaceTecSDK.createFaceTecAPIUserAgentString("");
-        }
+    public static String createUserAgentForNewSession() {
+        return FaceTecSDK.createFaceTecAPIUserAgentString("");
+    }
 
-    public static String createUserAgentForSession(String sessionId){
+    public static String createUserAgentForSession(String sessionId) {
         return FaceTecSDK.createFaceTecAPIUserAgentString(sessionId);
     }
 
