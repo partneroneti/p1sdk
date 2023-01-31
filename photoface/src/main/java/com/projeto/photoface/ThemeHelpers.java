@@ -33,19 +33,19 @@ class ThemeHelpers {
         FaceTecCustomization currentCustomization = new FaceTecCustomization();
         currentCustomization.vocalGuidanceCustomization.mode = FaceTecVocalGuidanceCustomization.VocalGuidanceMode.NO_VOCAL_GUIDANCE;
         currentCustomization = Config.retrieveConfigurationWizardCustomization();
-        currentCustomization.getCancelButtonCustomization().customImage = R.drawable.single_chevron_left_offred;
+        currentCustomization.getCancelButtonCustomization().customImage = R.drawable.single_chevron_left_offwhite;
         return currentCustomization;
     }
 
     static FaceTecCustomization getLowLightCustomizationForTheme(Context context, String theme) {
         FaceTecCustomization currentLowLightCustomization = Config.retrieveLowLightConfigurationWizardCustomization();
-        currentLowLightCustomization.getCancelButtonCustomization().customImage = R.drawable.single_chevron_left_offred;
+        currentLowLightCustomization.getCancelButtonCustomization().customImage = R.drawable.single_chevron_left_offwhite;
         return currentLowLightCustomization;
     }
 
     static FaceTecCustomization getDynamicDimmingCustomizationForTheme(Context context, String theme) {
         FaceTecCustomization currentDynamicDimmingCustomization = Config.retrieveDynamicDimmingConfigurationWizardCustomization();
-        currentDynamicDimmingCustomization.getCancelButtonCustomization().customImage = R.drawable.single_chevron_left_offred;
+        currentDynamicDimmingCustomization.getCancelButtonCustomization().customImage = R.drawable.single_chevron_left_offwhite;
 
         return currentDynamicDimmingCustomization;
     }
