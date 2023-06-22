@@ -7,6 +7,17 @@
     tools:context=".CameraDocumentActivity">
 
 
+    <ImageView
+        android:id="@+id/captureResultImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
     <com.otaliastudios.cameraview.CameraView
         android:id="@+id/cameraDoc"
         android:layout_width="0dp"
@@ -136,7 +147,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
+        app:layout_constraintTop_toBottomOf="@+id/previewTitleText" />
 
     <ImageView
         android:id="@+id/imageViewTeste"
@@ -147,6 +158,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/border" />
+
+    <TextView
+        android:id="@+id/previewTitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/photoface_document_preview_title_text"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/view4"
+        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
