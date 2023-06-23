@@ -69,7 +69,9 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
             if (isPreview) {
                 setPicture(pictureResult);
                 isPreview = false;
-                isPreviewEnabled(false);
+                if (frente == null || verso == null) {
+                    isPreviewEnabled(false);
+                }
             } else {
                 camera.takePictureSnapshot();
             }
