@@ -57,6 +57,7 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
         textTitle.setText(getString(R.string.photoface_document_title_front_text));
         camera.setLifecycleOwner(this);
         camera.setPictureSize(SizeSelectors.smallest());
+        camera.setUseDeviceOrientation(false);
         camera.addCameraListener(new CameraListener() {
             @Override
             public void onPictureTaken(PictureResult result) {
