@@ -38,6 +38,10 @@ public class ApiService {
     private static final String user = "";
     private static final String password = "";
 
+//    private static final String baseUrl = "https://testapi.io/api/pgdev/";
+//    private static final String user = "xxx";
+//    private static final String password = "xxxx";
+
     private static final Request service = getRetrofit(baseUrl).create(Request.class);
 
     public static Integer status;

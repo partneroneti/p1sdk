@@ -108,4 +108,7 @@
     <string name="photoface_document_back_button_text">Voltar</string>
     <string name="photoface_document_title_front_text">Frente</string>
     <string name="photoface_document_title_back_text">Verso</string>
+    <string name="photoface_document_yes_text">Sim</string>
+    <string name="photoface_document_remake_text">Refazer</string>
+    <string name="photoface_document_preview_title_text">A foto ficou boa?</string>
 </resources>
