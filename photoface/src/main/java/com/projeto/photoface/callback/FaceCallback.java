@@ -4,6 +4,7 @@ public interface FaceCallback {
     void onCapturedFace(
             String faceScan,
             String auditTrailImage,
-            String lowQualityAuditTrailImage
+            String lowQualityAuditTrailImage,
+            String error
     );
 }

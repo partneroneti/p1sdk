@@ -7,6 +7,7 @@ import android.util.Base64;
 import com.facetec.sdk.FaceTecFaceScanResultCallback;
 import com.facetec.sdk.FaceTecSDK;
 import com.facetec.sdk.FaceTecSessionResult;
+import com.facetec.sdk.FaceTecSessionStatus;
 import com.otaliastudios.cameraview.PictureResult;
 import com.projeto.photoface.callback.DocumentCallback;
 import com.projeto.photoface.callback.FaceCallback;
@@ -80,11 +81,14 @@ public class CallLib {
             FaceTecSessionResult faceTecSessionResult,
             FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
     ) {
+        if(faceTecSessionResult.getStatus()!= FaceTecSessionStatus.SESSION_COMPLETED_SUCCESSFULLY){
+            faceCallback.onCapturedFace(null,null,null, faceTecSessionResult.getStatus().name());
+        }
         String faceScan = faceTecSessionResult.getFaceScanBase64();
         String auditTrailImage = faceTecSessionResult.getAuditTrailCompressedBase64()[0];
         String lowQualityAuditTrailImage = faceTecSessionResult.getLowQualityAuditTrailCompressedBase64()[0];
 
-        faceCallback.onCapturedFace(faceScan, auditTrailImage, lowQualityAuditTrailImage);
+        faceCallback.onCapturedFace(faceScan, auditTrailImage, lowQualityAuditTrailImage, null);
         faceTecFaceScanResultCallback.cancel();
     }
 

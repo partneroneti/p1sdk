@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setFaceListener() { // cria o listener para a captura de selfie
         CallLib.faceListener(
-                    (faceScan, auditTrailImage, lowQualityAuditTrailImage) -> { // faça algo com as imagens da selfie
+                    (faceScan, auditTrailImage, lowQualityAuditTrailImage, error) -> { // faça algo com as imagens da selfie
 
                     ApiService.callLiveSession(faceScan, auditTrailImage, lowQualityAuditTrailImage);
 
