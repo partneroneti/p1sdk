@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Camada para a borda -->
+    <item>
+        <shape>
+            <solid android:color="@android:color/transparent" /> <!-- Cor transparente para a borda -->
+            <stroke android:width="4dp" android:color="@color/white" /> <!-- Largura e cor da borda -->
+            <corners android:radius="0dp" /> <!-- Cantos quadrados -->
+        </shape>
+    </item>
+    <!-- Camada para o fundo -->
+    <item android:right="4dp" android:left="4dp" android:top="4dp" android:bottom="4dp">
+        <shape>
+            <solid android:color="@android:color/transparent" /> <!-- Cor de fundo do botão -->
+            <corners android:radius="0dp" /> <!-- Cantos quadrados -->
+        </shape>
+    </item>
+</layer-list>

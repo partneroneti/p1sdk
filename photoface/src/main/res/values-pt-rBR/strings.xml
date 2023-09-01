@@ -3,12 +3,12 @@
     <string name="FaceTec_accessibility_torch_button">Alternar luz</string>
 
     <string name="FaceTec_action_ok">OK</string>
-    <string name="FaceTec_action_im_ready">ESTOU PRONTO</string>
-    <string name="FaceTec_action_try_again">TENTE NOVAMENTE</string>
-    <string name="FaceTec_action_continue">CONTINUAR</string>
-    <string name="FaceTec_action_take_photo">TIRAR FOTO</string>
-    <string name="FaceTec_action_retake_photo">RETOMAR</string>
-    <string name="FaceTec_action_accept_photo">ACEITAR</string>
+    <string name="FaceTec_action_im_ready">Estou pronto</string>
+    <string name="FaceTec_action_try_again">Tente novamente</string>
+    <string name="FaceTec_action_continue">Continuar</string>
+    <string name="FaceTec_action_take_photo">Tirar foto</string>
+    <string name="FaceTec_action_retake_photo">Retomar</string>
+    <string name="FaceTec_action_accept_photo">Aceitar</string>
     <string name="FaceTec_action_confirm">CONFIRMAR INFORMAÇÕES</string>
     <string name="FaceTec_action_scan_nfc">SCAN ePASSPORT</string>
     <string name="FaceTec_action_scan_nfc_card">SCAN ID CARD</string>
@@ -20,13 +20,13 @@
     <string name="FaceTec_camera_permission_enable_camera">HABILITAR CÂMERA</string>
     <string name="FaceTec_camera_permission_launch_settings">CONFIGURAÇÕES DE LANÇAMENTO</string>
 
-    <string name="FaceTec_feedback_center_face">Centralizar seu rosto</string>
+    <string name="FaceTec_feedback_center_face">Centralize seu rosto</string>
     <string name="FaceTec_feedback_face_not_found">Enquadre seu rosto</string>
     <string name="FaceTec_feedback_face_not_looking_straight_ahead">Olhe em Frente</string>
     <string name="FaceTec_feedback_face_not_upright">Mantenha a cabeça reta</string>
     <string name="FaceTec_feedback_hold_steady">Mantenha firme</string>
     <string name="FaceTec_feedback_move_phone_away">Afastar</string>
-    <string name="FaceTec_feedback_move_phone_closer">Mover mais perto</string>
+    <string name="FaceTec_feedback_move_phone_closer">Aproxime seu rosto</string>
     <string name="FaceTec_feedback_move_phone_to_eye_level">Mover a câmera para o nível dos olhos</string>
     <string name="FaceTec_feedback_use_even_lighting">Iluminar o rosto de forma mais uniforme</string>
 
@@ -50,10 +50,10 @@
     <string name="FaceTec_idscan_nfc_card_status_finished_with_error_message">Chip do cartão de identificação\nIlegível</string>
     <string name="FaceTec_idscan_nfc_status_skipped_message">Verificação NFC\nIgnorado</string>
 
-    <string name="FaceTec_instructions_header_ready_1">Prepare-se para</string>
+    <string name="FaceTec_instructions_header_ready_1">Vamos lá! Prepare-se para</string>
     <string name="FaceTec_instructions_header_ready_2">para começar.</string>
-    <string name="FaceTec_instructions_message_ready_1">Enquadre seu rosto na marcação, pressione</string>
-    <string name="FaceTec_instructions_message_ready_2">o botão abaixo e siga as indicações na tela.</string>
+    <string name="FaceTec_instructions_message_ready_1">Procure um local iluminado, retire</string>
+    <string name="FaceTec_instructions_message_ready_2">óculos, bonés e acessórios.</string>
 
     <string name="FaceTec_result_facescan_upload_message">Processando..</string>
     <string name="FaceTec_result_success_message">Sucesso</string>

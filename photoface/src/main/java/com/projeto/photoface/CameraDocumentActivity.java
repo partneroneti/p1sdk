@@ -3,10 +3,15 @@ package com.projeto.photoface;
 import android.content.pm.ActivityInfo;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,7 +38,7 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
     private TextView textTitle, previewTitle;
     private CameraView camera;
     private ImageView capturePreview;
-
+    private ImageView overlayPreview;
     private boolean isPreview = false;
 
     protected static final String BUTTON_COLOR = "BUTTON_COLOR";
@@ -50,11 +55,14 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
         btnCapture = findViewById(R.id.button);
         btnBack = findViewById(R.id.btn_back);
         capturePreview = findViewById(R.id.captureResultImage);
+        overlayPreview = findViewById(R.id.view4);
         previewTitle = findViewById(R.id.previewTitleText);
 
         setLayoutCustomColor();
 
         textTitle.setText(getString(R.string.photoface_document_title_front_text));
+        overlayPreview.setImageResource(R.drawable.ilustracao_frente);
+        overlayPreview.setAlpha(.2f);
         camera.setLifecycleOwner(this);
         camera.setPictureSize(SizeSelectors.smallest());
         camera.setUseDeviceOrientation(false);
@@ -85,12 +93,15 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
                 finish();
             }
         });
+
+
     }
 
     private void setPicture(PictureResult result) {
         if (frente == null) {
             frente = result;
             textTitle.setText(R.string.photoface_document_title_back_text);
+            overlayPreview.setImageResource(R.drawable.ic_ilustracao_verso);
         } else {
             verso = result;
         }
@@ -106,15 +117,19 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
         isPreviewEnabled(true);
     }
 
+
+
     private void isPreviewEnabled(boolean isPreview) {
 
         if (isPreview) {
+            overlayPreview.setVisibility(View.GONE);
             capturePreview.setVisibility(View.VISIBLE);
             camera.setVisibility(View.GONE);
             previewTitle.setVisibility(View.VISIBLE);
             btnCapture.setText(R.string.photoface_document_yes_text);
             btnBack.setText(R.string.photoface_document_remake_text);
         } else {
+            overlayPreview.setVisibility(View.VISIBLE);
             capturePreview.setVisibility(View.GONE);
             camera.setVisibility(View.VISIBLE);
             previewTitle.setVisibility(View.GONE);
@@ -129,13 +144,25 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
         String buttonTextColor = getIntent().getStringExtra(BUTTON_TEXT_COLOR);
         String textColor = getIntent().getStringExtra(TEXT_COLOR);
 
-        btnCapture.getBackground().setColorFilter(
-                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                        Color.parseColor(buttonColor),
-                        BlendModeCompat.SRC_ATOP
-                )
-        );
-        btnCapture.setTextColor(Color.parseColor(buttonTextColor));
+
+        {
+            // Configurando a cor da borda do botão
+            btnCapture.setTextColor(Color.parseColor(buttonTextColor));
+            {
+                //Configurando a cor de fundo do botão
+                LayerDrawable layerDrawable = (LayerDrawable) btnCapture.getBackground();
+                GradientDrawable borderShape = (GradientDrawable) layerDrawable.getDrawable(0); // A segunda camada é a do fundo
+                borderShape.setStroke(12,Color.parseColor(buttonTextColor)); // Set the new stroke color
+
+            }
+            {
+                //Configurando a cor de fundo do botão
+                LayerDrawable layerDrawable = (LayerDrawable) btnCapture.getBackground();
+                GradientDrawable backgroundShape = (GradientDrawable) layerDrawable.getDrawable(1); // A segunda camada é a do fundo
+                backgroundShape.setColor(Color.parseColor(buttonColor));
+            }
+
+        }
         textTitle.setTextColor(Color.parseColor(textColor));
         btnBack.setTextColor(Color.parseColor(textColor));
 

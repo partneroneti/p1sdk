@@ -44,7 +44,6 @@
         app:cameraPictureSizeMaxHeight="3000"
         app:cameraPictureSizeMaxWidth="3000"
         app:cameraPictureSizeMinArea="10000000"
-
         app:cameraPictureSizeMinHeight="100"
         app:cameraPictureSizeMinWidth="100"
         app:cameraPictureSizeSmallest="false"
@@ -56,15 +55,37 @@
         tools:ignore="MissingConstraints" />
 
 
-    <View
-        android:id="@+id/view4"
+    <FrameLayout
+        android:id="@+id/frame1"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/border"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/view3"
         app:layout_constraintStart_toEndOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <ImageView
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@color/document_transparent"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toStartOf="@+id/view3"
+            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+
+            />
+
+        <View
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border" />
+
+
+    </FrameLayout>
 
     <View
         android:id="@+id/view5"
@@ -74,7 +95,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/view3"
         app:layout_constraintStart_toEndOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/view4" />
+        app:layout_constraintTop_toBottomOf="@+id/frame1" />
 
     <View
         android:id="@+id/view2"
@@ -121,12 +142,13 @@
     <Button
         android:id="@+id/btn_back"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_square_corners"
         android:text="@string/photoface_document_back_button_text"
         android:textAllCaps="false"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="@+id/button"
         app:layout_constraintStart_toStartOf="@+id/button"
         app:layout_constraintTop_toBottomOf="@+id/button" />
@@ -134,12 +156,13 @@
     <Button
         android:id="@+id/button"
         style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="0dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/filled_button_background"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_square_corners"
         android:text="@string/photoface_document_capture_button_text"
         android:textAllCaps="false"
         android:textSize="16sp"
@@ -167,8 +190,8 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/view4"
-        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="@+id/frame1"
+        app:layout_constraintStart_toStartOf="@+id/frame1"
         app:layout_constraintTop_toTopOf="@+id/view5" />
 
     <androidx.constraintlayout.widget.Guideline

@@ -84,13 +84,12 @@ public class MainActivity extends AppCompatActivity {
                 ApiService.facetecCredentialsObj.getCertificate(),
                 ApiService.facetecCredentialsObj.getDeviceKeyIdentifier(),
                 ApiService.facetecCredentialsObj.getProductionKeyText(),
-                ApiService.session
-        );
+                ApiService.session);
     }
 
     private void setFaceListener() { // cria o listener para a captura de selfie
         CallLib.faceListener(
-                    (faceScan, auditTrailImage, lowQualityAuditTrailImage, error) -> { // faça algo com as imagens da selfie
+                (faceScan, auditTrailImage, lowQualityAuditTrailImage, error) -> { // faça algo com as imagens da selfie
 
                     ApiService.callLiveSession(faceScan, auditTrailImage, lowQualityAuditTrailImage);
 
@@ -106,9 +105,12 @@ public class MainActivity extends AppCompatActivity {
     private void startDocumentCapture() { // inicializa a captura do documento
         CallLib.startDocumentCapture(
                 mContext,
-                "#ED3245", // passar o hexadecimal da cor
-                "#ffffff", // passar o hexadecimal da cor
-                "#" + Integer.toHexString(ContextCompat.getColor(mContext, R.color.text_color))// passar o hexadecimal da cor (exemplo de como pegar a cor definida no color.xml)
+                "#01ea5e", // passar o hexadecimal da cor
+                "#1f3649", // passar o hexadecimal da cor
+                "#" + Integer.toHexString(ContextCompat.getColor(mContext, R.color.text_color))// passar o hexadecimal
+                                                                                               // da cor (exemplo de
+                                                                                               // como pegar a cor
+                                                                                               // definida no color.xml)
         );
     }
 
@@ -123,14 +125,12 @@ public class MainActivity extends AppCompatActivity {
     private void logFace(
             String faceScan,
             String auditTrailImage,
-            String lowQualityAuditTrailImage
-    ) {
+            String lowQualityAuditTrailImage) {
         Log.d("MainActivity", "" +
                 "onCapturedFace: " +
                 " faceScan ->" + faceScan +
                 " auditTrailImage ->" + auditTrailImage +
-                " lowQualityAuditTrailImage ->" + lowQualityAuditTrailImage
-        );
+                " lowQualityAuditTrailImage ->" + lowQualityAuditTrailImage);
     }
 
     private void logDoc(List<Document> documentList) {
