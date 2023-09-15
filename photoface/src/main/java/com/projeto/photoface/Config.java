@@ -37,14 +37,14 @@ public class Config {
     public static FaceTecCustomization retrieveConfigurationWizardCustomization() {
 
         // For Color Customization
-        int outerBackgroundColor = Color.parseColor("#283897");
-        int frameColor = Color.parseColor("#283897");
-        int borderColor = Color.parseColor("#283897");
-        int ovalColor = Color.parseColor("#000000");
+        int outerBackgroundColor = Color.parseColor("#7d7c80");
+        int frameColor = Color.parseColor("#7d7c80");
+        int borderColor = Color.parseColor("#7d7c80");
+        int ovalColor = Color.parseColor("#ffffff");
         int dualSpinnerColor = Color.parseColor("#e32b24");
         int textColor = Color.parseColor("#ffffff");
-        int buttonAndFeedbackBarColor =  Color.parseColor("#e32b24");
-        int buttonAndFeedbackBarTextColor = Color.parseColor("#ffffff");
+        int buttonAndFeedbackBarColor =  Color.parseColor("#01ea5e"); //fundo
+        int buttonAndFeedbackBarTextColor = Color.parseColor("#221c46"); //borda
         int buttonColorHighlight = Color.parseColor("#396E99");
         int buttonColorDisabled = Color.parseColor("#B9CCDE");
 
@@ -77,7 +77,7 @@ public class Config {
         defaultCustomization.getOverlayCustomization().showBrandingImage = false;
 
         // Set Guidance Customization
-        defaultCustomization.getGuidanceCustomization().buttonCornerRadius = 30;
+        defaultCustomization.getGuidanceCustomization().buttonCornerRadius = 0;
         defaultCustomization.getGuidanceCustomization().backgroundColors = frameColor;
         defaultCustomization.getGuidanceCustomization().foregroundColor = textColor;
         defaultCustomization.getGuidanceCustomization().buttonFont = font;
@@ -90,6 +90,8 @@ public class Config {
         defaultCustomization.getGuidanceCustomization().buttonBackgroundNormalColor = buttonAndFeedbackBarColor;
         defaultCustomization.getGuidanceCustomization().buttonBackgroundDisabledColor = buttonColorDisabled;
         defaultCustomization.getGuidanceCustomization().buttonBackgroundHighlightColor = buttonColorHighlight;
+        defaultCustomization.getGuidanceCustomization().buttonBorderWidth = 4;
+        defaultCustomization.getGuidanceCustomization().buttonBorderColor = buttonAndFeedbackBarTextColor;
         defaultCustomization.getGuidanceCustomization().buttonTextNormalColor = buttonAndFeedbackBarTextColor;
         defaultCustomization.getGuidanceCustomization().buttonTextDisabledColor = buttonAndFeedbackBarTextColor;
         defaultCustomization.getGuidanceCustomization().buttonTextHighlightColor = buttonAndFeedbackBarTextColor;

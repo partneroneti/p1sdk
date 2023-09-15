@@ -28,7 +28,7 @@ public class LivenessActivity extends AppCompatActivity {
                     FaceTecSessionResult faceTecSessionResult,
                     FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
             ) {
-                if (faceTecSessionResult.getStatus().name().equals("USER_CANCELLED")) {
+                if (faceTecSessionResult.getStatus().equals("USER_CANCELLED")) {
                     faceTecFaceScanResultCallback.cancel();
                     finish();
                 } else {

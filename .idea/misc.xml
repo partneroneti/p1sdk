@@ -13,11 +13,14 @@
         <entry key="app/src/main/res/layout/shapeinput.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="photoface/src/main/res/drawable/border.xml" value="0.17" />
+        <entry key="photoface/src/main/res/drawable/button_square_corners.xml" value="0.1" />
         <entry key="photoface/src/main/res/drawable/ekyc_animated_activity_indicator.xml" value="0.1045" />
         <entry key="photoface/src/main/res/drawable/ekyc_static_success_vector_drawable.xml" value="0.1045" />
         <entry key="photoface/src/main/res/drawable/facetec_nfc_starting_animation.xml" value="0.1045" />
-        <entry key="photoface/src/main/res/layout/activity_camera_document.xml" value="0.35" />
+        <entry key="photoface/src/main/res/drawable/filled_button_background.xml" value="0.1" />
+        <entry key="photoface/src/main/res/layout/activity_camera_document.xml" value="0.173785400390625" />
         <entry key="photoface/src/main/res/layout/border.xml" value="0.16197916666666667" />
+        <entry key="photoface/src/main/res/layout/button_square_corners.xml" value="0.10866261398176291" />
       </map>
     </option>
   </component>
