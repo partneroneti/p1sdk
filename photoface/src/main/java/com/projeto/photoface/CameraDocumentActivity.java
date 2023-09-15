@@ -65,6 +65,8 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
         overlayPreview.setAlpha(.2f);
         camera.setLifecycleOwner(this);
         camera.setPictureSize(SizeSelectors.smallest());
+        camera.setSnapshotMaxHeight(2000);
+        camera.setSnapshotMaxWidth(2000);
         camera.setUseDeviceOrientation(false);
         camera.addCameraListener(new CameraListener() {
             @Override
