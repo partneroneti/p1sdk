@@ -36,7 +36,7 @@ public interface Request {
     @GET("session")
     Call<SessionLiveResponse> sessionLive(@Header("Authorization") String auth);
 
-    @POST("liveness")
+    @POST("liveness-async")
     Call<LivenessResponse> liveness(@Body LivenessTBody documentBody, @Header("Authorization") String auth);
 
     @GET("session")

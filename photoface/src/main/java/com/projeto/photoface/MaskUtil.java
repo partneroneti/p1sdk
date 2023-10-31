@@ -25,7 +25,7 @@ public class MaskUtil {
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String value = MaskUtil.unmask(s.toString());
-                String mask = getDefaultMask(value);;
+                String mask = getDefaultMask(value);
                 String maskAux = "";
                 if (isUpdating) {
                     oldValue = value;

@@ -34,13 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
-    private static final String baseUrl =  "";
-    private static final String user = "";
-    private static final String password = "";
-
-//    private static final String baseUrl = "https://testapi.io/api/pgdev/";
-//    private static final String user = "xxx";
-//    private static final String password = "xxxx";
+    private static final String baseUrl =  "https://integracao-sodexo-desenvolvimento.partner1.com.br/api/";
+    //private static final String baseUrl =  "https://webhook.site/acb29661-de1c-47d7-a3bc-db8601f16584/";
+    private static final String user = "HMG.IOS";
+    private static final String password = "eQtlC7BM";
 
     private static final Request service = getRetrofit(baseUrl).create(Request.class);
 
@@ -78,7 +75,7 @@ public class ApiService {
     public static void call(String cpfInput) {
 
         cpf = new Cpf();
-        cpf.setCpf(cpfInput);
+        cpf.setCpf(cpfInput.replaceAll("\\D",""));
 
         AuthenticationBody ab = new AuthenticationBody();
         ab.setGrantType("password");
@@ -144,6 +141,25 @@ public class ApiService {
 
                 facetecCredentialsObj = response.body().getObjectReturn();
 
+                String production=
+                        "# FaceTec Mobile SDK license\n" +
+                                "appId      = *\n" +
+                                "expiryDate = 2023-12-10\n" +
+                                "key        = 003045022100e52aae018b53a1b578c9a5d12a609c80521eff34ae99006588e2ef33f6fe63020220756a6caf7aa300e260798429431489b8684e4279d3b62bc85e449b736100b0da";
+
+                facetecCredentialsObj.setCertificate("-----BEGIN PUBLIC KEY-----\n" +
+                        "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5PxZ3DLj+zP6T6HFgzzk\n" +
+                        "M77LdzP3fojBoLasw7EfzvLMnJNUlyRb5m8e5QyyJxI+wRjsALHvFgLzGwxM8ehz\n" +
+                        "DqqBZed+f4w33GgQXFZOS4AOvyPbALgCYoLehigLAbbCNTkeY5RDcmmSI/sbp+s6\n" +
+                        "mAiAKKvCdIqe17bltZ/rfEoL3gPKEfLXeN549LTj3XBp0hvG4loQ6eC1E1tRzSkf\n" +
+                        "GJD4GIVvR+j12gXAaftj3ahfYxioBH7F7HQxzmWkwDyn3bqU54eaiB7f0ftsPpWM\n" +
+                        "aceUaqkL2DZUvgN0efEJjnWy5y1/Gkq5GGWCROI9XG/SwXJ30BbVUehTbVcD70+ZF\n" +
+                        "8QIDAQAB\n" +
+                        "-----END PUBLIC KEY-----\n");
+                facetecCredentialsObj.setDeviceKeyIdentifier("d1Sw1MUDNucTIP1nFOHAE4VroIPca24d");
+                facetecCredentialsObj.setProductionKeyText(production);
+
+
                 //cria a sessao
                 createSession(ApiService.facetecCredentialsObj.getDeviceKeyIdentifier(),
                         new Runnable(){
@@ -187,6 +203,7 @@ public class ApiService {
                         break;
                     case 4:
                         onDocumentListener.init();
+                        //onFaceListener.init();
                         break;
                     default:
                         callback.onFinish();

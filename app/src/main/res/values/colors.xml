@@ -11,4 +11,20 @@
     <color name="button_color">#01ea5e</color>
     <color name="text_button_color">#221c46</color>
     <color name="text_color">#FFFFFFFF</color>
+
+
+    <color name="liveness_background">#727175</color>
+    <color name="liveness_color_box_message">#00EC55</color>
+    <color name="liveness_color_text_message">#1F193D</color>
+    <color name="liveness_color_popup_error" >#1F193D</color>
+    <color name="liveness_color_text_popup_error" >#ffffff</color>
+    <color name="liveness_color_button_popup_error" >#00EC55</color>
+    <color name="liveness_color_text_button_popup_error">#727175</color>
+    <color name="liveness_color_background_take_picture_button">#00EC55</color>
+    <color name="liveness_color_icon_take_picture_button">#1F193D</color>
+    <color name="liveness_color_background_document_button">#727175</color>
+    <color name="liveness_color_text_button_document">#00EC55</color>
+    <color name="liveness_color_silhouette_success">#ffffff</color>
+    <color name="liveness_color_silhouette_success_error" >#ffffff</color>
+    <color name="liveness_color_silhouette_neutral">#ffffff</color>
 </resources>

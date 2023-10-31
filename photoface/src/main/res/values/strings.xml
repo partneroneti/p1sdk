@@ -111,4 +111,9 @@
     <string name="photoface_document_yes_text">Sim</string>
     <string name="photoface_document_remake_text">Refazer</string>
     <string name="photoface_document_preview_title_text">A foto ficou boa?</string>
+    <string name="host_key" />
+    <string name="host_info" />
+    <string name="mobilesdk_app_id" />
+    <string name="project_id" />
+    <string name="project_number" />
 </resources>

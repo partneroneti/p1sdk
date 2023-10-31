@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                 ApiService.facetecCredentialsObj.getDeviceKeyIdentifier(),
                 ApiService.facetecCredentialsObj.getProductionKeyText(),
                 ApiService.session);
+
     }
 
     private void setFaceListener() { // cria o listener para a captura de selfie

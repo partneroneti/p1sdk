@@ -8,4 +8,18 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="document_transparent">#AB000000</color>
+    <color name="liveness_background" />
+    <color name="liveness_color_box_message" />
+    <color name="liveness_color_text_message" />
+    <color name="liveness_color_popup_error" />
+    <color name="liveness_color_text_popup_error" />
+    <color name="liveness_color_button_popup_error" />
+    <color name="liveness_color_text_button_popup_error" />
+    <color name="liveness_color_background_take_picture_button" />
+    <color name="liveness_color_icon_take_picture_button" />
+    <color name="liveness_color_background_document_button" />
+    <color name="liveness_color_text_button_document" />
+    <color name="liveness_color_silhouette_success" />
+    <color name="liveness_color_silhouette_success_error" />
+    <color name="liveness_color_silhouette_neutral" />
 </resources>

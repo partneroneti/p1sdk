@@ -42,8 +42,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.otaliastudios:cameraview:2.7.2'
-
-    implementation 'com.github.partneroneti:p1sdk-dep:1.1'
+    //implementation 'com.github.partneroneti:p1sdk-dep:9.6.53'
+    implementation 'io.unico:capture:5.2.0'
 }
 
 
@@ -59,4 +59,5 @@ afterEvaluate {
         }
     }
 }
+
 
