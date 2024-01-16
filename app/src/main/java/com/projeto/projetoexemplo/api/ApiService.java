@@ -34,9 +34,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
-    private static final String baseUrl =  "";
-    private static final String user = "";
-    private static final String password = "";
+    private static final String baseUrl =  "https://integracao-sodexo-homologacao.partner1.com.br/api/";
+    private static final String user = "SODEXO.HMG";
+    private static final String password = "ifnEQrBy";
 
 //    private static final String baseUrl = "https://testapi.io/api/pgdev/";
 //    private static final String user = "xxx";

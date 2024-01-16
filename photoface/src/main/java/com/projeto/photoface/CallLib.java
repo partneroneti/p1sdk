@@ -83,7 +83,10 @@ public class CallLib {
     ) {
         if(faceTecSessionResult.getStatus()!= FaceTecSessionStatus.SESSION_COMPLETED_SUCCESSFULLY){
             faceCallback.onCapturedFace(null,null,null, faceTecSessionResult.getStatus().name());
+            faceTecFaceScanResultCallback.cancel();
+            return;
         }
+
         String faceScan = faceTecSessionResult.getFaceScanBase64();
         String auditTrailImage = faceTecSessionResult.getAuditTrailCompressedBase64()[0];
         String lowQualityAuditTrailImage = faceTecSessionResult.getLowQualityAuditTrailCompressedBase64()[0];
