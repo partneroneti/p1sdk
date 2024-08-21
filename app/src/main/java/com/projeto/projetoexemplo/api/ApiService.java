@@ -24,8 +24,17 @@ import com.projeto.projetoexemplo.api.entity.response.LivenessResponse;
 import com.projeto.projetoexemplo.api.entity.response.SessionLiveResponse;
 import com.projeto.projetoexemplo.api.entity.response.StatusResponse;
 
+import java.security.cert.CertificateException;
 import java.util.List;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,8 +44,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiService {
 
     private static final String baseUrl =  "https://integracao-sodexo-homologacao.partner1.com.br/api/";
-    private static final String user = "SODEXO.HMG";
-    private static final String password = "ifnEQrBy";
+    private static final String user = "SODEXO.B2M";
+    private static final String password = "MI0tQfQt";
 
 //    private static final String baseUrl = "https://testapi.io/api/pgdev/";
 //    private static final String user = "xxx";
@@ -59,8 +68,51 @@ public class ApiService {
     private static Retrofit getRetrofit(String url) {
         return new Retrofit.Builder()
                 .baseUrl(url)
+                .client(getUnsafeOkHttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    private static OkHttpClient getUnsafeOkHttpClient() {
+        try {
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[] {
+                    new X509TrustManager() {
+                        @Override
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
+                        }
+
+                        @Override
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return new java.security.cert.X509Certificate[]{};
+                        }
+                    }
+            };
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance("SSL");
+            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
+            // Create an ssl socket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            builder.sslSocketFactory(sslSocketFactory);
+            builder.hostnameVerifier(new HostnameVerifier() {
+                @Override
+                public boolean verify(String hostname, SSLSession session) {
+                    return true;
+                }
+            });
+
+            OkHttpClient okHttpClient = builder.build();
+            return okHttpClient;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void onFaceStartListener(OnFaceListener listener) {
@@ -78,7 +130,7 @@ public class ApiService {
     public static void call(String cpfInput) {
 
         cpf = new Cpf();
-        cpf.setCpf(cpfInput);
+       cpf.setCpf(cpfInput.replaceAll("\\D",""));
 
         AuthenticationBody ab = new AuthenticationBody();
         ab.setGrantType("password");
