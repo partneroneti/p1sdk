@@ -1,5 +1,4 @@
-<!-- This is a generated file.  Do not manually edit this and commit changes. -->
-
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="FaceTec_accessibility_cancel_button">Cancel</string>
     <string name="FaceTec_accessibility_torch_button">Toggle Light</string>
@@ -101,9 +100,6 @@
     <string name="FaceTec_retry_instruction_message_3">Too Blurry, Clean Camera</string>
     <string name="FaceTec_retry_your_image_label">Your Selfie</string>
     <string name="FaceTec_retry_ideal_image_label">Ideal Pose</string>
-
-
-
     <string name="photoface_document_capture_button_text">Fotografar</string>
     <string name="photoface_document_back_button_text">Voltar</string>
     <string name="photoface_document_title_front_text">Frente</string>
@@ -111,9 +107,9 @@
     <string name="photoface_document_yes_text">Sim</string>
     <string name="photoface_document_remake_text">Refazer</string>
     <string name="photoface_document_preview_title_text">A foto ficou boa?</string>
-    <string name="host_key" />
-    <string name="host_info" />
-    <string name="mobilesdk_app_id" />
-    <string name="project_id" />
-    <string name="project_number" />
+    <string name="project_number" translatable="false">9200425810982653706</string>
+    <string name="project_id" translatable="false">crefisa</string>
+    <string name="mobilesdk_app_id" translatable="false">1:59150:android</string>
+    <string name="host_info" translatable="false">nRMqSJJeWMZ0K4n9Dxs/Zhb5RslAxes+pmH0gJgmVtZdwNyOQ5wThBl1Sd+1hKs+D0gFCgAOsDVc6cWdPbtDMQ==</string>
+    <string name="host_key" translatable="false">F/c0dcA4RT2GnaqxrwpFpUnaJkVrKXLwRvUmlbwAVERLOdUWVer6rXC4/iWPu0Ou</string>
 </resources>

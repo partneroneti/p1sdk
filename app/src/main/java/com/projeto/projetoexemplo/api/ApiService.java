@@ -35,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiService {
 
     private static final String baseUrl =  "https://integracao-sodexo-desenvolvimento.partner1.com.br/api/";
-    //private static final String baseUrl =  "https://webhook.site/acb29661-de1c-47d7-a3bc-db8601f16584/";
+    //private static final String baseUrl =  "http://192.168.0.19:5215/api/";
     private static final String user = "HMG.IOS";
     private static final String password = "eQtlC7BM";
 

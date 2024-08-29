@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="FaceTec_accessibility_cancel_button">Cancelar</string>
     <string name="FaceTec_accessibility_torch_button">Alternar luz</string>
@@ -90,7 +91,6 @@
     <string name="FaceTec_presession_neutral_expression">Expressão neutra, sem sorriso</string>
     <string name="FaceTec_presession_conditions_too_bright">Ambiente muito claro</string>
     <string name="FaceTec_presession_brighten_your_environment">Ilumine seu ambiente</string>
-
 
     <!-- Document Capture -->
     <string name="photoface_document_capture_button_text">Fotografar</string>

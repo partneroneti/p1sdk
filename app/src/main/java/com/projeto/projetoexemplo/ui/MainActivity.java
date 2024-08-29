@@ -18,6 +18,7 @@ import com.projeto.projetoexemplo.R;
 import com.projeto.projetoexemplo.api.ApiService;
 import com.projeto.projetoexemplo.api.entity.callback.OnDocumentListener;
 import com.projeto.projetoexemplo.api.entity.callback.OnFaceListener;
+import com.projeto.projetoexemplo.utils.SSLUtil;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //SSLUtil.configureGlobalSSLContext();
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
