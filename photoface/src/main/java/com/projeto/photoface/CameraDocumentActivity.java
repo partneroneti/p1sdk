@@ -110,6 +110,7 @@ public class CameraDocumentActivity extends AppCompatActivity implements Documen
         if (frente != null && verso != null) {
             btnCapture.setEnabled(false);
             CallLib.sendDocument(frente, verso);
+            finish();
         }
     }
 
