@@ -2,11 +2,16 @@ package com.projeto.photoface;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -23,23 +28,14 @@ import com.acesso.acessobio_android.onboarding.camera.UnicoCheckCameraOpener;
 import com.acesso.acessobio_android.services.dto.ErrorBio;
 import com.acesso.acessobio_android.services.dto.ResultCamera;
 
+import java.io.File;
+import java.io.IOException;
 
-public class LivenessActivity extends AppCompatActivity {
 
+public class LivenessActivity extends AppCompatActivity
+        implements AcessoBioListener,iAcessoBioSelfie,CameraListener {
 
-    private final AcessoBioListener callback = new AcessoBioListener() {
-        @Override
-        public void onErrorAcessoBio(ErrorBio errorBio) { }
-
-        @Override
-        public void onUserClosedCameraManually() { }
-
-        @Override
-        public void onSystemClosedCameraTimeoutSession() { }
-
-        @Override
-        public void onSystemChangedTypeCameraTimeoutFaceInference() { }
-    };
+    private static final int CAMERA_PERMISSION_CODE = 100;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,145 +43,79 @@ public class LivenessActivity extends AppCompatActivity {
 
         String packageName = getApplicationContext().getPackageName();
         Resources resources = this.getBaseContext().getResources();
-        IAcessoBioBuilder acessoBioBuilder = new AcessoBio(this, callback);
 
-        IAcessoBioTheme unicoTheme = new IAcessoBioTheme() {
-            @Override
-            public Object getColorBackground() {
-                return resources.getColor( R.color.liveness_background);
+        // Verifica se a versão do Android é 6.0 (API 23) ou superior
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // Se for Android 6.0 ou superior, verificar e solicitar a permissão
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
+            } else {
+                startLiveness(resources);
             }
+        } else {
+            // Para Android 5.0 e 5.1, a permissão já foi concedida na instalação
+            startLiveness(resources);
+        }
 
-            @Override
-            public Object getColorBoxMessage() {
-                return resources.getColor( R.color.liveness_color_box_message);
-            }
+    }
 
-            @Override
-            public Object getColorTextMessage() {
-                return resources.getColor( R.color.liveness_color_text_message);
-            }
+    private void startLiveness(Resources resources) {
+        IAcessoBioTheme unicoTheme = new UnicoTheme(resources);
 
-            @Override
-            public Object getColorBackgroundPopupError() {
-                return resources.getColor( R.color.liveness_color_popup_error);
-            }
+        try {
+            new AcessoBio(this, this)
+                    .setAutoCapture(false)
+                    .setSmartFrame(false)
+                    .setTheme(unicoTheme)
+                    .setTimeoutSession(50)
+                    .build()
+                    .prepareCamera(new UnicoConfig(), this)
+            ;
+        }catch (Exception e){
+            Log.e(this.getClass().getSimpleName(),e.toString());
+        }
+    }
 
-            @Override
-            public Object getColorTextPopupError() {
-                return resources.getColor( R.color.liveness_color_text_popup_error);
-            }
+    @Override
+    public void onErrorAcessoBio(ErrorBio errorBio) {
+        TextView textViewDescription = findViewById(R.id.textViewDescription);
+        textViewDescription.setText(errorBio.getDescription());
+    }
 
-            @Override
-            public Object getColorBackgroundButtonPopupError() {
-                return resources.getColor( R.color.liveness_color_button_popup_error);
-            }
+    @Override
+    public void onUserClosedCameraManually() {
 
-            @Override
-            public Object getColorTextButtonPopupError() {
-                return resources.getColor( R.color.liveness_color_text_button_popup_error);
-            }
+    }
 
-            @Override
-            public Object getColorBackgroundTakePictureButton() {
-                return resources.getColor( R.color.liveness_color_background_take_picture_button);
-            }
+    @Override
+    public void onSystemClosedCameraTimeoutSession() {
 
-            @Override
-            public Object getColorIconTakePictureButton() {
-                return resources.getColor( R.color.liveness_color_icon_take_picture_button);
-            }
+    }
 
-            @Override
-            public Object getColorBackgroundBottomDocument() {
-                return resources.getColor( R.color.liveness_color_background_document_button);
-            }
+    @Override
+    public void onSystemChangedTypeCameraTimeoutFaceInference() {
 
-            @Override
-            public Object getColorTextBottomDocument() {
-                return resources.getColor( R.color.liveness_color_text_button_document);
-            }
+    }
 
-            @Override
-            public Object getColorSilhouetteSuccess() {
-                return resources.getColor( R.color.liveness_color_silhouette_success);
-            }
+    @Override
+    public void onSuccessSelfie(ResultCamera resultCamera) {
+        CallLib.liveNess(resultCamera,null);
+    }
 
-            @Override
-            public Object getColorSilhouetteError() {
-                return resources.getColor( R.color.liveness_color_silhouette_success_error);
-            }
+    @Override
+    public void onErrorSelfie(ErrorBio errorBio) {
+        TextView textViewDescription = findViewById(R.id.textViewDescription);
+        textViewDescription.setText(errorBio.getDescription());
+    }
 
-            @Override
-            public Object getColorSilhouetteNeutral() {
-                return resources.getColor( R.color.liveness_color_silhouette_neutral);
-            }
-        };
+    @Override
+    public void onCameraReady(UnicoCheckCameraOpener.Camera camera) {
+        camera.open(this);
+    }
 
-        acessoBioBuilder.setTheme(unicoTheme);
+    @Override
+    public void onCameraFailed(String s) {
 
-        UnicoCheckCamera unicoCheckCamera = acessoBioBuilder
-                .setAutoCapture(false)
-                .setSmartFrame(false)
-                .build();
-
-        AcessoBioConfigDataSource unicoConfig = new AcessoBioConfigDataSource() {
-
-            @Override
-            public String getHostKey() {
-                return resources.getString(R.string.host_key);
-            }
-
-            @Override
-            public String getHostInfo() {
-                return resources.getString(R.string.host_info);
-            }
-
-            @Override
-            public String getBundleIdentifier() {
-                return "";
-            }
-
-            @Override
-            public String getMobileSdkAppId() {
-                return resources.getString(R.string.mobilesdk_app_id);
-            }
-
-            @Override
-            public String getProjectId() {
-                return resources.getString(R.string.project_id);
-            }
-
-            @Override
-            public String getProjectNumber() {
-                return resources.getString(R.string.project_number);
-            }
-        };
-
-
-        iAcessoBioSelfie cameraListener = new iAcessoBioSelfie() {
-            @Override
-            public void onSuccessSelfie(ResultCamera result) {
-                CallLib.liveNess(result,null);
-            }
-
-            @Override
-            public void onErrorSelfie(ErrorBio errorBio) {
-                TextView textViewDescription = findViewById(R.id.textViewDescription);
-                textViewDescription.setText(errorBio.getDescription());
-            }
-        };
-
-        unicoCheckCamera.prepareCamera(unicoConfig, new CameraListener() {
-            public void onCameraReady(UnicoCheckCameraOpener.Camera cameraOpener) {
-                cameraOpener.open(cameraListener);
-            }
-
-            @Override
-            public void onCameraFailed(String message) {
-
-                Log.e("ERROR", message);
-
-            }
-        });
+        Log.e("ERROR", s);
     }
 }

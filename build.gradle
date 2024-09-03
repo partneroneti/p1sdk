@@ -11,3 +11,17 @@ task clean(type: Delete) {
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven { url System.getenv('HOME') + "/.m2/repository/" }
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io'}
+        maven { url "https://maven-sdk.unico.run/sdk-mobile" }
+        maven {
+            url "https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/repository"
+        }
+    }
+}
