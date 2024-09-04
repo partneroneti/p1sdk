@@ -12,6 +12,7 @@ import com.facetec.sdk.FaceTecFaceScanResultCallback;
 import com.facetec.sdk.FaceTecSDK;
 import com.facetec.sdk.FaceTecSessionActivity;
 import com.facetec.sdk.FaceTecSessionResult;
+import com.facetec.sdk.FaceTecSessionStatus;
 
 public class LivenessActivity extends AppCompatActivity {
 
@@ -28,11 +29,12 @@ public class LivenessActivity extends AppCompatActivity {
                     FaceTecSessionResult faceTecSessionResult,
                     FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
             ) {
-                if (faceTecSessionResult.getStatus().equals("USER_CANCELLED")) {
+                if (faceTecSessionResult.getStatus()== FaceTecSessionStatus.USER_CANCELLED){
                     faceTecFaceScanResultCallback.cancel();
                     finish();
                 } else {
                     CallLib.liveNess(faceTecSessionResult, faceTecFaceScanResultCallback);
+                    finish();
                 }
 
             }
