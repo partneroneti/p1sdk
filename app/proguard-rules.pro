@@ -9,3 +9,13 @@
 -keep class HavenSDK.**{ *; }
 -keep class HavenSDK** { *; }
 -keep class com.projeto.**{*;}
+
+-dontwarn java.beans.ConstructorProperties
+-dontwarn java.beans.Transient
+-dontwarn kotlin.jvm.internal.SourceDebugExtension
+-dontwarn kotlinx.parcelize.Parcelize
+-dontwarn org.slf4j.impl.StaticLoggerBinder
+-dontwarn proguard.annotation.Keep
+-dontwarn proguard.annotation.KeepClassMembers
+-dontwarn proguard.annotation.KeepName
+-dontwarn proguard.annotation.KeepPublicClassMembers
