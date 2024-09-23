@@ -27,6 +27,7 @@ import com.acesso.acessobio_android.onboarding.camera.UnicoCheckCamera;
 import com.acesso.acessobio_android.onboarding.camera.UnicoCheckCameraOpener;
 import com.acesso.acessobio_android.services.dto.ErrorBio;
 import com.acesso.acessobio_android.services.dto.ResultCamera;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,6 +63,9 @@ public class LivenessActivity extends AppCompatActivity
     private void startLiveness(Resources resources) {
         IAcessoBioTheme unicoTheme = new UnicoTheme(resources);
 
+        Bundle extras =  getIntent().getExtras();
+        String unicoConfig = (String)extras.get("unicoConfig");
+        UnicoConfig config = (new Gson()).fromJson(unicoConfig,UnicoConfig.class);
         try {
             new AcessoBio(this, this)
                     .setAutoCapture(false)
@@ -69,7 +73,7 @@ public class LivenessActivity extends AppCompatActivity
                     .setTheme(unicoTheme)
                     .setTimeoutSession(50)
                     .build()
-                    .prepareCamera(new UnicoConfig(), this)
+                    .prepareCamera(config, this)
             ;
         }catch (Exception e){
             Log.e(this.getClass().getSimpleName(),e.toString());

@@ -11,6 +11,8 @@ import com.projeto.photoface.callback.DocumentCallback;
 import com.projeto.photoface.callback.FaceCallback;
 import com.projeto.photoface.entity.body.Document;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,7 @@ public class CallLib {
         mContext = context;
 
         Intent intent = new Intent(context, LivenessActivity.class);
+        intent.putExtra("unicoConfig",Base64.decode(certKey.getBytes(StandardCharsets.UTF_8),Base64.DEFAULT));
         context.startActivity(intent);
     }
 
