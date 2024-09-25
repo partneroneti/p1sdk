@@ -34,8 +34,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
-    private static final String baseUrl =  "https://integracao-sodexo-desenvolvimento.partner1.com.br/api/";
-//    private static final String baseUrl =  "http://192.168.0.10:5215/api/";
+//    private static final String baseUrl =  "https://integracao-sodexo-desenvolvimento.partner1.com.br/api/";
+    private static final String baseUrl =  "http://192.168.0.121:5215/api/";
     private static final String user = "HMG.IOS";
     private static final String password = "eQtlC7BM";
 
@@ -141,24 +141,6 @@ public class ApiService {
 
                 facetecCredentialsObj = response.body().getObjectReturn();
 
-                String production=
-                        "# FaceTec Mobile SDK license\n" +
-                                "appId      = *\n" +
-                                "expiryDate = 2023-12-10\n" +
-                                "key        = 003045022100e52aae018b53a1b578c9a5d12a609c80521eff34ae99006588e2ef33f6fe63020220756a6caf7aa300e260798429431489b8684e4279d3b62bc85e449b736100b0da";
-
-                facetecCredentialsObj.setCertificate("-----BEGIN PUBLIC KEY-----\n" +
-                        "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5PxZ3DLj+zP6T6HFgzzk\n" +
-                        "M77LdzP3fojBoLasw7EfzvLMnJNUlyRb5m8e5QyyJxI+wRjsALHvFgLzGwxM8ehz\n" +
-                        "DqqBZed+f4w33GgQXFZOS4AOvyPbALgCYoLehigLAbbCNTkeY5RDcmmSI/sbp+s6\n" +
-                        "mAiAKKvCdIqe17bltZ/rfEoL3gPKEfLXeN549LTj3XBp0hvG4loQ6eC1E1tRzSkf\n" +
-                        "GJD4GIVvR+j12gXAaftj3ahfYxioBH7F7HQxzmWkwDyn3bqU54eaiB7f0ftsPpWM\n" +
-                        "aceUaqkL2DZUvgN0efEJjnWy5y1/Gkq5GGWCROI9XG/SwXJ30BbVUehTbVcD70+ZF\n" +
-                        "8QIDAQAB\n" +
-                        "-----END PUBLIC KEY-----\n");
-                facetecCredentialsObj.setDeviceKeyIdentifier("d1Sw1MUDNucTIP1nFOHAE4VroIPca24d");
-                facetecCredentialsObj.setProductionKeyText(production);
-
 
                 //cria a sessao
                 createSession(ApiService.facetecCredentialsObj.getDeviceKeyIdentifier(),
@@ -213,7 +195,7 @@ public class ApiService {
 
             @Override
             public void onFailure(Call<StatusResponse> call, Throwable t) {
-
+                Log.e("ERROR",t.getMessage());
             }
         });
     }

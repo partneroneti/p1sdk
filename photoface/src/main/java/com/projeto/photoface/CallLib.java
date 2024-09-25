@@ -56,7 +56,7 @@ public class CallLib {
         mContext = context;
 
         Intent intent = new Intent(context, LivenessActivity.class);
-        intent.putExtra("unicoConfig",Base64.decode(certKey.getBytes(StandardCharsets.UTF_8),Base64.DEFAULT));
+        intent.putExtra("unicoConfig",new String(Base64.decode(certKey.getBytes(StandardCharsets.UTF_8),Base64.DEFAULT)));
         context.startActivity(intent);
     }
 
