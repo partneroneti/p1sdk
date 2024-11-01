@@ -35,14 +35,14 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.projeto.photoface'
-//    publishing {
-//        singleVariant('release') {
-//            withSourcesJar()
-//        }
-//        singleVariant('debug') {
-//            withSourcesJar()
-//        }
-//    }
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+        singleVariant('debug') {
+            withSourcesJar()
+        }
+    }
 }
 
 
@@ -62,43 +62,43 @@ dependencies {
 }
 
 // Adicione tarefas para gerar JARs de fontes e Javadocs
-//tasks.register("sourcesJar", Jar) {
-//    from android.sourceSets.getByName("main").java.srcDirs
-//    archiveClassifier.set("sources")
-//}
-//
-//tasks.register("javadoc", Javadoc) {
-//    source = android.sourceSets.getByName("main").java.srcDirs
-//    classpath += files(android.bootClasspath.join(File.pathSeparator))
-//}
-//
-//tasks.register("javadocJar", Jar) {
-//    dependsOn tasks.named("javadoc")
-//    archiveClassifier.set("javadoc")
-//    from tasks.named("javadoc").get().destinationDir
-//}
+tasks.register("sourcesJar", Jar) {
+    from android.sourceSets.getByName("main").java.srcDirs
+    archiveClassifier.set("sources")
+}
 
-//publishing {
-//    if (!project.hasProperty('debug')) {
-//        publications {
-//            release(MavenPublication) {
-//                groupId = 'com.github.partneroneti'
-//                artifactId = 'photoface'
-//                version = project.version
-//
-//                afterEvaluate {
-//                    from components.release
-//                }
-//            }
-//            debug(MavenPublication) {
-//                groupId = 'com.github.partneroneti'
-//                artifactId = 'photoface'
-//                version = project.version
-//
-//                afterEvaluate {
-//                    from components.debug
-//                }
-//            }
-//        }
-//    }
-//}
+tasks.register("javadoc", Javadoc) {
+    source = android.sourceSets.getByName("main").java.srcDirs
+    classpath += files(android.bootClasspath.join(File.pathSeparator))
+}
+
+tasks.register("javadocJar", Jar) {
+    dependsOn tasks.named("javadoc")
+    archiveClassifier.set("javadoc")
+    from tasks.named("javadoc").get().destinationDir
+}
+
+publishing {
+    if (!project.hasProperty('debug')) {
+        publications {
+            release(MavenPublication) {
+                groupId = 'com.github.partneroneti'
+                artifactId = 'photoface'
+                version = project.version
+
+                afterEvaluate {
+                    from components.release
+                }
+            }
+            debug(MavenPublication) {
+                groupId = 'com.github.partneroneti'
+                artifactId = 'photoface'
+                version = project.version
+
+                afterEvaluate {
+                    from components.debug
+                }
+            }
+        }
+    }
+}
