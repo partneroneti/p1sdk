@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 import com.projeto.photoface.CallLib;
 import com.projeto.photoface.callback.CallbackStatus;
 import com.projeto.photoface.entity.body.Document;
+import com.projeto.projetoexemplo.BuildConfig;
 import com.projeto.projetoexemplo.api.entity.body.AuthenticationBody;
 import com.projeto.projetoexemplo.api.entity.body.Cpf;
 import com.projeto.projetoexemplo.api.entity.body.DocumentBody;
@@ -34,10 +35,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiService {
 
-//    private static final String baseUrl =  "https://integracao-sodexo-desenvolvimento.partner1.com.br/api/";
-    private static final String baseUrl =  "http://192.168.0.121:5215/api/";
-    private static final String user = "HMG.IOS";
-    private static final String password = "eQtlC7BM";
+    private static final String baseUrl = BuildConfig.BASE_URL;
+    private static final String user = BuildConfig.USER;
+    private static final String password = BuildConfig.PASSWORD;
 
     private static final Request service = getRetrofit(baseUrl).create(Request.class);
 

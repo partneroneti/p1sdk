@@ -1,4 +1,5 @@
-    plugins {
+
+plugins {
         id 'com.android.library'
         id 'maven-publish'
     //    id 'signing'
@@ -26,6 +27,7 @@ android {
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
     compileOptions {
@@ -42,6 +44,8 @@ android {
 //        }
 //    }
 }
+
+
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
