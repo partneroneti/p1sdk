@@ -27,5 +27,5 @@ pluginManagement {
 rootProject.name = "Unico SDK POC Kotlin"
 include ':app'
 rootProject.name = "ProjetoExemplo"
-include ':app'
+//include ':app'
 include ':photoface'
