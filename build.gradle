@@ -21,7 +21,7 @@ if (localPropertiesFile.exists()) {
     localProperties.load(new FileInputStream(localPropertiesFile))
 }
 
-project("photoface"){
+allprojects {
     repositories {
         mavenLocal()
         maven { url System.getenv('HOME') + "/.m2/repository/" }
@@ -31,15 +31,5 @@ project("photoface"){
         maven {
             url "https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/repository"
         }
-    }
-}
-
-project("app"){
-    repositories {
-        mavenLocal()
-        maven { url System.getenv('HOME') + "/.m2/repository/" }
-        google()
-        jcenter()
-        maven { url 'https://jitpack.io'}
     }
 }

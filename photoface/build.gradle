@@ -79,25 +79,13 @@ tasks.register("javadocJar", Jar) {
 }
 
 publishing {
-    if (!project.hasProperty('debug')) {
-        publications {
-            release(MavenPublication) {
-                groupId = 'com.github.partneroneti'
-                artifactId = 'photoface'
-                version = project.version
-
-                afterEvaluate {
-                    from components.release
-                }
-            }
-            debug(MavenPublication) {
-                groupId = 'com.github.partneroneti'
-                artifactId = 'photoface'
-                version = project.version
-
-                afterEvaluate {
-                    from components.debug
-                }
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.github.partneroneti'
+            artifactId = 'photoface'
+            version = project.version
+            afterEvaluate {
+                from components.release
             }
         }
     }
