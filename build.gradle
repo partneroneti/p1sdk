@@ -1,0 +1,36 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' version '7.4.2' apply false
+    id 'com.android.library' version '7.4.2' apply false
+}
+if (project.name == "app") {
+    apply plugin: false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localProperties.load(new FileInputStream(localPropertiesFile))
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven { url System.getenv('HOME') + "/.m2/repository/" }
+        google()
+        jcenter()
+        maven { url "https://maven-sdk.unico.run/sdk-mobile" }
+        maven {
+            url "https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/repository"
+        }
+        maven { url 'https://jitpack.io' }
+    }
+}

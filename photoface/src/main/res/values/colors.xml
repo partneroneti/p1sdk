@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="document_transparent">#AB000000</color>
+    <color name="button_color">#01ea5e</color>
+    <color name="text_button_color">#221c46</color>
+    <color name="text_color">#FFFFFFFF</color>
+
+
+    <color name="liveness_background">#727175</color>
+    <color name="liveness_color_box_message">#00EC55</color>
+    <color name="liveness_color_text_message">#1F193D</color>
+    <color name="liveness_color_popup_error" >#1F193D</color>
+    <color name="liveness_color_text_popup_error" >#ffffff</color>
+    <color name="liveness_color_button_popup_error" >#00EC55</color>
+    <color name="liveness_color_text_button_popup_error">#727175</color>
+    <color name="liveness_color_background_take_picture_button">#00EC55</color>
+    <color name="liveness_color_icon_take_picture_button">#1F193D</color>
+    <color name="liveness_color_background_document_button">#727175</color>
+    <color name="liveness_color_text_button_document">#00EC55</color>
+    <color name="liveness_color_silhouette_success">#ffffff</color>
+    <color name="liveness_color_silhouette_success_error" >#ffffff</color>
+    <color name="liveness_color_silhouette_neutral">#ffffff</color>
+
+
+</resources>

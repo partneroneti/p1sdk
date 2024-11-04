@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Partner One</string>
+    <!-- Document Capture -> customização dos textos da tela, se não colocar essas tag o sdk usa o texto default -->
+    <string name="photoface_document_capture_button_text">Fotografar</string>
+    <string name="photoface_document_back_button_text">Voltar</string>
+    <string name="photoface_document_title_front_text">Frente</string>
+    <string name="photoface_document_title_back_text">Verso</string>
+    <string name="project_number" translatable="false">9200425810982653706</string>
+    <string name="project_id" translatable="false">crefisa</string>
+    <string name="mobilesdk_app_id" translatable="false">1:59150:android</string>
+    <string name="host_info" translatable="false">nRMqSJJeWMZ0K4n9Dxs/Zhb5RslAxes+pmH0gJgmVtZdwNyOQ5wThBl1Sd+1hKs+D0gFCgAOsDVc6cWdPbtDMQ==</string>
+    <string name="host_key" translatable="false">F/c0dcA4RT2GnaqxrwpFpUnaJkVrKXLwRvUmlbwAVERLOdUWVer6rXC4/iWPu0Ou</string>
+</resources>
