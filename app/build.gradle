@@ -53,7 +53,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
 
-    implementation project(path: ':photoface')
+//    implementation project(path: ':photoface')
+    implementation 'com.github.partneroneti:p1sdk:2.0'
 
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
