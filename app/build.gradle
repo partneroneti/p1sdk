@@ -34,6 +34,9 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "${localProperties['baseUrl']}"
+            buildConfigField "String", "USER", "${localProperties['user']}"
+            buildConfigField "String", "PASSWORD", "${localProperties['password']}"
         }
     }
     compileOptions {

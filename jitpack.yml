@@ -3,6 +3,6 @@ jdk:
 before_install:
   - ./scripts/prepareJitpackEnvironment.sh
 env:
-  BASE_URL: 'x'
-  USER: 'x'
-  PASSWORD: 'x'
+  baseUrl: 'x'
+  user: 'x'
+  password: 'x'
