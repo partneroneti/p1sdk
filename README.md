@@ -31,7 +31,7 @@ Se o projeto utiliza **ProGuard** ou **DexGuard**, é necessário adicionar as r
 -keep class HavenSDK** { *; }
 
 # Classes específicas do projeto
--keep class com.projeto.* { ; }
+-keep class com.projeto.* { *; }
 -keep class com.projeto.photoface.** { *; }
 -keep class com.projeto.photoface.entity.body.** { *; }
 -keep class * extends com.projeto.photoface.entity.body.Document
