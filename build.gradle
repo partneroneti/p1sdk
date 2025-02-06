@@ -27,9 +27,8 @@ allprojects {
         maven { url System.getenv('HOME') + "/.m2/repository/" }
         google()
         jcenter()
-        maven { url "https://maven-sdk.unico.run/sdk-mobile" }
-        maven {
-            url "https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/repository"
+        flatDir {
+            dirs '../libs'
         }
         maven { url 'https://jitpack.io' }
     }
