@@ -1,7 +1,8 @@
 jdk:
   - openjdk11
-before_install:
-  - ./scripts/prepareJitpackEnvironment.sh
+install:
+  - './gradlew :photoface:build'
+  - './gradlew :photoface:publishToMavenLocal'
 env:
   baseUrl: 'x'
   user: 'x'

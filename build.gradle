@@ -27,9 +27,6 @@ allprojects {
         maven { url System.getenv('HOME') + "/.m2/repository/" }
         google()
         jcenter()
-        flatDir {
-            dirs '../libs'
-        }
         maven { url 'https://jitpack.io' }
     }
 }

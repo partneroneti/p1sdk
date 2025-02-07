@@ -20,7 +20,7 @@ android {
     }
 
     repositories {
-
+        maven { url "https://maven-sdk.unico.run/sdk-mobile" }
     }
 
     buildTypes {
@@ -62,8 +62,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.otaliastudios:cameraview:2.7.2'
-//    implementation 'io.unico:capture:5.26.0'
-    implementation(name: 'capture-5.26.0', ext: 'aar')
+    implementation 'io.unico:capture:5.26.0'
 
 }
 
