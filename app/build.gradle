@@ -22,6 +22,14 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    repositories {
+        mavenLocal()
+        maven { url System.getenv('HOME') + "/.m2/repository/" }
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
@@ -53,8 +61,8 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
 
-    implementation project(path: ':photoface')
-//    implementation 'com.github.partneroneti:p1sdk:2.0'
+//    implementation project(path: ':photoface')
+    implementation 'com.github.partneroneti:p1sdk:2.0.1'
 
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

@@ -7,9 +7,12 @@ Este repositório contém instruções para configurar o **Partner One SDK** em 
 
 ## Configuração do `build.gradle`
 
-No arquivo **`build.gradle`** do módulo do app, adicione a seguinte dependência:
+No arquivo **`build.gradle`** do módulo do app, adicione a seguinte dependência e o seguinte repositório:
 
 ```gradle
+repositories {
+  maven { url "https://maven-sdk.unico.run/sdk-mobile" }
+}
 implementation('com.github.partneroneti:p1sdk:2.0') {
     exclude group: 'io.unico.security', module: 'dexguard-runtime'
 }
