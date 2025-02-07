@@ -6,3 +6,6 @@ env:
   baseUrl: 'x'
   user: 'x'
   password: 'x'
+publish:
+  only:
+    - 'photoface'
