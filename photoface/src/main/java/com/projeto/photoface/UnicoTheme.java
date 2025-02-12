@@ -14,71 +14,71 @@ public class UnicoTheme implements IAcessoBioTheme {
 
     @Override
     public Object getColorBackground() {
-        return resources.getColor( R.color.liveness_background);
+        return "727175";
     }
 
     @Override
     public Object getColorBoxMessage() {
-        return resources.getColor( R.color.liveness_color_box_message);
+        return "#00EC55";
     }
 
     @Override
     public Object getColorTextMessage() {
-        return resources.getColor( R.color.liveness_color_text_message);
+        return "#1F193D";
     }
 
     @Override
     public Object getColorBackgroundPopupError() {
-        return resources.getColor( R.color.liveness_color_popup_error);
+        return "#1F193D";
     }
 
     @Override
     public Object getColorTextPopupError() {
-        return resources.getColor( R.color.liveness_color_text_popup_error);
+        return "#ffffff";
     }
 
     @Override
     public Object getColorBackgroundButtonPopupError() {
-        return resources.getColor( R.color.liveness_color_button_popup_error);
+        return "#00EC55";
     }
 
     @Override
     public Object getColorTextButtonPopupError() {
-        return resources.getColor( R.color.liveness_color_text_button_popup_error);
+        return "#727175";
     }
 
     @Override
     public Object getColorBackgroundTakePictureButton() {
-        return resources.getColor( R.color.liveness_color_background_take_picture_button);
+        return "#00EC55";
     }
 
     @Override
     public Object getColorIconTakePictureButton() {
-        return resources.getColor( R.color.liveness_color_icon_take_picture_button);
+        return "#1F193D";
     }
 
     @Override
     public Object getColorBackgroundBottomDocument() {
-        return resources.getColor( R.color.liveness_color_background_document_button);
+        return "#727175";
     }
 
     @Override
     public Object getColorTextBottomDocument() {
-        return resources.getColor( R.color.liveness_color_text_button_document);
+        return  "#00EC55";
     }
 
     @Override
     public Object getColorSilhouetteSuccess() {
-        return resources.getColor( R.color.liveness_color_silhouette_success);
+        return "#ffffff";
     }
 
     @Override
     public Object getColorSilhouetteError() {
-        return resources.getColor( R.color.liveness_color_silhouette_success_error);
+        return "#ffffff";
     }
 
     @Override
     public Object getColorSilhouetteNeutral() {
-        return resources.getColor( R.color.liveness_color_silhouette_neutral);
+        return "#ffffff";
     }
 }
