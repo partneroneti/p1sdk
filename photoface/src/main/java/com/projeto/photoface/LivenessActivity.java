@@ -88,17 +88,20 @@ public class LivenessActivity extends AppCompatActivity
 
     @Override
     public void onUserClosedCameraManually() {
-
+        setResult(Activity.RESULT_CANCELED);
+        finish();
     }
 
     @Override
     public void onSystemClosedCameraTimeoutSession() {
-
+        setResult(Activity.RESULT_CANCELED);
+        finish();
     }
 
     @Override
     public void onSystemChangedTypeCameraTimeoutFaceInference() {
-
+        setResult(Activity.RESULT_CANCELED);
+        finish();
     }
 
     @Override
