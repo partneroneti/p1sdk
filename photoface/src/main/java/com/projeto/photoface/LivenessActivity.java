@@ -112,8 +112,7 @@ public class LivenessActivity extends AppCompatActivity
 
     @Override
     public void onErrorSelfie(ErrorBio errorBio) {
-        TextView textViewDescription = findViewById(R.id.textViewDescription);
-        textViewDescription.setText(errorBio.getDescription());
+        CallLib.liveNess(null, errorBio.getDescription());
         finish();
     }
 

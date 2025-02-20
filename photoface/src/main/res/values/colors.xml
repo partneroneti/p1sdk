@@ -27,6 +27,7 @@
     <color name="liveness_color_silhouette_success">#ffffff</color>
     <color name="liveness_color_silhouette_success_error" >#ffffff</color>
     <color name="liveness_color_silhouette_neutral">#ffffff</color>
+    <color name="unico_color_button_cancel">#1F193D</color>
 
 
 </resources>

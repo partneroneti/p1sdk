@@ -81,4 +81,5 @@ public class UnicoTheme implements IAcessoBioTheme {
     public Object getColorSilhouetteNeutral() {
         return "#ffffff";
     }
+
 }

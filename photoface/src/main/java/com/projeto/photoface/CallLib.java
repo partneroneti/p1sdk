@@ -75,7 +75,9 @@ public class CallLib {
             //FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
     ) {
          if(error!=null){
-           faceCallback.onCapturedFace(null,null,null, error);
+//           faceCallback.onCapturedFace(null,null,null, error);
+           faceCallback.onError(error);
+           return;
         }
         String faceScan =result.getEncrypted()+"/u";
         String auditTrailImage = result.getBase64();

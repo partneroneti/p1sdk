@@ -7,4 +7,7 @@ public interface FaceCallback {
             String lowQualityAuditTrailImage,
             String error
     );
+
+    void onError(String error);
+
 }

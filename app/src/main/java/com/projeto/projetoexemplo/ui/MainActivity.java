@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import com.projeto.photoface.CallLib;
 import com.projeto.photoface.MaskUtil;
 import com.projeto.photoface.callback.CallbackStatus;
+import com.projeto.photoface.callback.FaceCallback;
 import com.projeto.photoface.entity.body.Document;
 import com.projeto.projetoexemplo.R;
 import com.projeto.projetoexemplo.api.ApiService;
@@ -91,13 +92,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFaceListener() { // cria o listener para a captura de selfie
-        CallLib.faceListener(
-                (faceScan, auditTrailImage, lowQualityAuditTrailImage, error) -> { // faça algo com as imagens da selfie
+        CallLib.faceListener(new FaceCallback() {
+            @Override
+            public void onCapturedFace(String faceScan, String auditTrailImage, String lowQualityAuditTrailImage, String error) {
+                ApiService.callLiveSession(faceScan, auditTrailImage, lowQualityAuditTrailImage);
 
-                    ApiService.callLiveSession(faceScan, auditTrailImage, lowQualityAuditTrailImage);
+                logFace(faceScan, auditTrailImage, lowQualityAuditTrailImage);
+            }
 
-                    logFace(faceScan, auditTrailImage, lowQualityAuditTrailImage);
-                });
+            @Override
+            public void onError(String error) {
+                Log.d(this.getClass().getName(),error);
+            }
+        });
     }
 
     private void initStepDocument() {
