@@ -52,6 +52,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.projeto.projetoexemplo'
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 dependencies {
