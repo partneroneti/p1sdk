@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 ApiService.callLiveSession(faceScan, auditTrailImage, lowQualityAuditTrailImage);
 
                 logFace(faceScan, auditTrailImage, lowQualityAuditTrailImage);
+
             }
 
             @Override

@@ -43,6 +43,6 @@ public interface Request {
     Call<SessionLiveResponse> createSession(@Header("X-Device-Key") String deviceKey,
                                @Header("Authorization") String auth);
 
-    @GET("credentials/0")
+    @GET("credentials/1")
     Call<FacetecCredentialsResponse> facetecCredentials(@Header("Authorization") String auth);
 }

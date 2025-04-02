@@ -3,6 +3,7 @@ package com.projeto.photoface;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Base64;
+import android.util.Log;
 
 
 import com.acesso.acessobio_android.services.dto.ResultCamera;
@@ -74,17 +75,21 @@ public class CallLib {
             //FaceTecSessionResult faceTecSessionResult,
             //FaceTecFaceScanResultCallback faceTecFaceScanResultCallback
     ) {
-         if(error!=null){
+        if (faceCallback != null) {
+            if (error != null) {
 //           faceCallback.onCapturedFace(null,null,null, error);
-           faceCallback.onError(error);
-           return;
-        }
-        String faceScan =result.getEncrypted()+"/u";
-        String auditTrailImage = result.getBase64();
-        String lowQualityAuditTrailImage ="";// faceTecSessionResult.getLowQualityAuditTrailCompressedBase64()[0];
+                faceCallback.onError(error);
+                return;
+            }
+            String faceScan = result.getEncrypted() + "/u";
+            String auditTrailImage = result.getBase64();
+            String lowQualityAuditTrailImage = "";// faceTecSessionResult.getLowQualityAuditTrailCompressedBase64()[0];
 
-        faceCallback.onCapturedFace(faceScan, auditTrailImage, lowQualityAuditTrailImage, null);
-        // faceTecFaceScanResultCallback.cancel();
+            faceCallback.onCapturedFace(faceScan, auditTrailImage, lowQualityAuditTrailImage, null);
+            // faceTecFaceScanResultCallback.cancel();
+        }else{
+            Log.d(CallLib.class.getName(),"FaceCallback não inicializada");
+        }
     }
 
     protected static void sendDocument(PictureResult frente, PictureResult verso) {

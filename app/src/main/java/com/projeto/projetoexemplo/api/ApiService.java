@@ -9,6 +9,7 @@ import com.projeto.photoface.CallLib;
 import com.projeto.photoface.callback.CallbackStatus;
 import com.projeto.photoface.entity.body.Document;
 import com.projeto.projetoexemplo.BuildConfig;
+import com.projeto.projetoexemplo.api.entity.body.AdditionalData;
 import com.projeto.projetoexemplo.api.entity.body.AuthenticationBody;
 import com.projeto.projetoexemplo.api.entity.body.Cpf;
 import com.projeto.projetoexemplo.api.entity.body.DocumentBody;
@@ -76,6 +77,10 @@ public class ApiService {
 
         cpf = new Cpf();
         cpf.setCpf(cpfInput.replaceAll("\\D",""));
+        cpf.setProduct("teste_ios_prtner");
+        AdditionalData data = new AdditionalData();
+        data.setDeviceId("B6BC2824-389B-46DF-B0AF-50B03DA3751B");
+        cpf.setAdditionalData(data);
 
         AuthenticationBody ab = new AuthenticationBody();
         ab.setGrantType("password");
