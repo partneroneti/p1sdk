@@ -13,7 +13,7 @@ No arquivo **`build.gradle`** do módulo do app, adicione a seguinte dependênci
 repositories {
   maven { url "https://maven-sdk.unico.run/sdk-mobile" }
 }
-implementation('com.github.partneroneti:p1sdk:2.0') {
+implementation('com.github.partneroneti:p1sdk:2.0.8') {
     exclude group: 'io.unico.security', module: 'dexguard-runtime'
 }
 ```
