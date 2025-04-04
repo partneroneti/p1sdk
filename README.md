@@ -28,6 +28,27 @@ Se o projeto utiliza **ProGuard** ou **DexGuard**, é necessário adicionar as r
 
 ### Regras específicas do Partner One e Haven SDK
 ```pro
+# UnicoSDK
+-keep class kotlin.coroutines.**
+-keep class kotlinx.coroutines.**
+-keep class com.facetec.sdk.** { *; }
+-keep class com.acesso.acessobio_android.** { *; }
+-keep class io.unico.** { *; }
+
+
+# Partner One SDK
+-keep class br.com.makrosystems.haven.** { *; }
+-keep class HavenSDK.** { *; }
+-keep class HavenSDK** { *; }
+
+# Classes específicas do projeto
+-keep class com.projeto.* { *; }
+-keep class com.projeto.photoface.** { *; }
+-keep class com.projeto.photoface.entity.body.** { *; }
+-keep class * extends com.projeto.photoface.entity.body.Document
+-keepclassmembers class ** {
+    @com.projeto.photoface.entity.body.Document public *;
+}
 # Partner One SDK
 -keep class br.com.makrosystems.haven.** { *; }
 -keep class HavenSDK.** { *; }
