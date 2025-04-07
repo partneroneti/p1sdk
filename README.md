@@ -26,12 +26,15 @@ implementation('com.github.partneroneti:p1sdk:2.0.8') {
 
 Se o projeto utiliza **ProGuard** ou **DexGuard**, é necessário adicionar as regras abaixo no arquivo **`proguard-rules.pro`** para evitar problemas durante a minificação e obfuscação do código.
 
-### Regras específicas do Partner One e Haven SDK
+### Regras específicas do Partner One e Facetec SDK
 ```pro
 # UnicoSDK
 -keep class kotlin.coroutines.**
 -keep class kotlinx.coroutines.**
 -keep class com.facetec.sdk.** { *; }
+-keepclassmembers class com.facetec.sdk.** {
+    <fields>;
+}
 -keep class com.acesso.acessobio_android.** { *; }
 -keep class io.unico.** { *; }
 
@@ -48,28 +51,6 @@ Se o projeto utiliza **ProGuard** ou **DexGuard**, é necessário adicionar as r
 -keep class * extends com.projeto.photoface.entity.body.Document
 -keepclassmembers class ** {
     @com.projeto.photoface.entity.body.Document public *;
-}
-# Partner One SDK
--keep class br.com.makrosystems.haven.** { *; }
--keep class HavenSDK.** { *; }
--keep class HavenSDK** { *; }
-
-# Classes específicas do projeto
--keep class com.projeto.* { *; }
--keep class com.projeto.photoface.** { *; }
--keep class com.projeto.photoface.entity.body.** { *; }
--keep class * extends com.projeto.photoface.entity.body.Document
--keepclassmembers class ** {
-    @com.projeto.photoface.entity.body.Document public *;
-}
-```
-
-### Regras específicas do FaceTec SDK
-```pro
-# FaceTec SDK
--keep class com.facetec.sdk.** { *; }
--keepclassmembers class com.facetec.sdk.** {
-    <fields>;
 }
 ```
 
