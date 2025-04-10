@@ -1,5 +1,6 @@
 package com.projeto.photoface;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -15,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.acesso.acessobio_android.AcessoBioListener;
 import com.acesso.acessobio_android.iAcessoBioSelfie;
@@ -37,13 +39,14 @@ public class LivenessActivity extends AppCompatActivity
         implements AcessoBioListener,iAcessoBioSelfie,CameraListener {
 
     private static final int CAMERA_PERMISSION_CODE = 100;
+    private Resources resources;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         String packageName = getApplicationContext().getPackageName();
-        Resources resources = this.getBaseContext().getResources();
+        this.resources = this.getBaseContext().getResources();
 
         // Verifica se a versão do Android é 6.0 (API 23) ou superior
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -59,6 +62,20 @@ public class LivenessActivity extends AppCompatActivity
         }
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            // Verifica se a permissão foi concedida
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startLiveness(resources); // Inicia o liveness APENAS se a permissão for concedida
+            } else {
+              CallLib.liveNess(null, "Permissão da câmera negada");
+              finish();
+            }
+        }
+        }
 
     private void startLiveness(Resources resources) {
         IAcessoBioTheme unicoTheme = new UnicoTheme(resources);

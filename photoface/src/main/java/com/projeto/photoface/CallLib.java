@@ -58,7 +58,9 @@ public class CallLib {
 
         Intent intent = new Intent(context, LivenessActivity.class);
         intent.putExtra("unicoConfig",new String(Base64.decode(certKey.getBytes(StandardCharsets.UTF_8),Base64.DEFAULT)));
+
         context.startActivity(intent);
+
     }
 
     public static void faceListener(FaceCallback callback) {
