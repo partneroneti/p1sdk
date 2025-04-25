@@ -66,7 +66,8 @@ dependencies {
 
 
     implementation project(path: ':photoface')
-//    implementation 'com.github.partneroneti:p1sdk:2.0'
+//   implementation 'com.github.partneroneti:p1sdk:eeb9fbb297'
+
 
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
