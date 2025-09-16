@@ -106,6 +106,8 @@ public class LivenessActivity extends AppCompatActivity
         String message= "";
         if(errorBio!=null && errorBio.getDescription()!=null){
             message = errorBio.getDescription();
+        }else {
+            message="erro inesperado no sdk";
         }
         CallLib.liveNess(null,
                 message);
