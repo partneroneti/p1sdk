@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 
 public class LivenessActivity extends AppCompatActivity
@@ -99,8 +101,15 @@ public class LivenessActivity extends AppCompatActivity
 
     @Override
     public void onErrorAcessoBio(ErrorBio errorBio) {
-        TextView textViewDescription = findViewById(R.id.textViewDescription);
-        textViewDescription.setText(errorBio.getDescription());
+//        TextView textViewDescription = findViewById(R.id.textViewDescription);
+//        textViewDescription.setText(errorBio.getDescription());
+        String message= "";
+        if(errorBio!=null && errorBio.getDescription()!=null){
+            message = errorBio.getDescription();
+        }
+        CallLib.liveNess(null,
+                message);
+        finish();
     }
 
     @Override
