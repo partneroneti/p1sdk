@@ -77,9 +77,9 @@ public class ApiService {
 
         cpf = new Cpf();
         cpf.setCpf(cpfInput.replaceAll("\\D",""));
-        cpf.setProduct("teste_ios_prtner");
+        //cpf.setProduct("teste_ios_prtner");
         AdditionalData data = new AdditionalData();
-        data.setDeviceId("B6BC2824-389B-46DF-B0AF-50B03DA3751B");
+        //data.setDeviceId("B6BC2824-389B-46DF-B0AF-50B03DA3751B");
         cpf.setAdditionalData(data);
 
         AuthenticationBody ab = new AuthenticationBody();

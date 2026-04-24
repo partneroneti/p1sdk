@@ -28,6 +28,7 @@ import com.acesso.acessobio_android.onboarding.IAcessoBioTheme;
 import com.acesso.acessobio_android.onboarding.camera.CameraListener;
 import com.acesso.acessobio_android.onboarding.camera.UnicoCheckCamera;
 import com.acesso.acessobio_android.onboarding.camera.UnicoCheckCameraOpener;
+import com.acesso.acessobio_android.onboarding.models.Environment;
 import com.acesso.acessobio_android.services.dto.ErrorBio;
 import com.acesso.acessobio_android.services.dto.ResultCamera;
 import com.google.gson.Gson;
@@ -47,7 +48,6 @@ public class LivenessActivity extends AppCompatActivity
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String packageName = getApplicationContext().getPackageName();
         this.resources = this.getBaseContext().getResources();
 
         // Verifica se a versão do Android é 6.0 (API 23) ou superior
@@ -85,13 +85,28 @@ public class LivenessActivity extends AppCompatActivity
         Bundle extras =  getIntent().getExtras();
         String unicoConfig = (String)extras.get("unicoConfig");
         UnicoConfig config = (new Gson()).fromJson(unicoConfig,UnicoConfig.class);
+        config.setBundleIdentifier(getApplicationContext().getPackageName());
         try {
-            new AcessoBio(this, this)
-                    .setAutoCapture(false)
+            AcessoBio bio=new AcessoBio(this, this);
+
+                    bio.setAutoCapture(false)
                     .setSmartFrame(false)
                     .setTheme(unicoTheme)
-                    .setTimeoutSession(50)
-                    .build()
+                    .setTimeoutSession(50);
+
+                    if(config.getEnvironment()!=null){
+                        switch (config.getEnvironment()){
+                            case "DEV":
+                                bio.setEnvironment(Environment.UAT);
+                                break;
+
+                            case "PRD":
+                                bio.setEnvironment(Environment.PROD);
+                                break;
+                        }
+                    }
+
+                    bio.build()
                     .prepareCamera(config, this)
             ;
         }catch (Exception e){
