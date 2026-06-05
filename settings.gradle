@@ -1,22 +1,3 @@
-//pluginManagement {
-//    repositories {
-//        maven { url "https://jitpack.io" }
-//        gradlePluginPortal()
-//        google()
-//        mavenCentral()
-//        flatDir{ dirs 'libs/' }
-//    }
-//}
-//dependencyResolutionManagement {
-//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-//    repositories {
-//        maven { url "https://jitpack.io" }
-//        maven { url "https://maven-sdk.unico.run/sdk-mobile"}
-//        google()
-//        mavenCentral()
-//        //flatDir{ dirs 'libs/' }
-//    }
-//}
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -24,8 +5,8 @@ pluginManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Unico SDK POC Kotlin"
-include ':app'
+
 rootProject.name = "ProjetoExemplo"
-//include ':app'
+
+include ':app'
 include ':photoface'

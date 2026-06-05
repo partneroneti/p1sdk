@@ -65,8 +65,8 @@ dependencies {
     implementation 'org.slf4j:slf4j-simple:2.0.12'
 
 
-    implementation project(path: ':photoface')
-//   implementation 'com.github.partneroneti:p1sdk:eeb9fbb297'
+//    implementation project(':photoface')
+   implementation 'com.github.partneroneti:p1sdk:unicoid-c37b9f021b-1'
 
 
 

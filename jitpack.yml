@@ -1,11 +1,11 @@
 jdk:
   - openjdk17
-before_install:
-  - ./scripts/prepareJitpackEnvironment.sh
 env:
   baseUrl: 'x'
   user: 'x'
   password: 'x'
+install:
+  - ./gradlew :photoface:assembleRelease
 publish:
   only:
     - 'photoface'
