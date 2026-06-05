@@ -5,7 +5,7 @@ env:
   user: 'x'
   password: 'x'
 install:
-  - ./gradlew :photoface:assembleRelease
+  - ./gradlew :photoface:publishToMavenLocal
 publish:
   only:
     - 'photoface'
