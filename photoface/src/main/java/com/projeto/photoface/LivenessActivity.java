@@ -42,6 +42,7 @@ public class LivenessActivity extends AppCompatActivity
 
     private static final int CAMERA_PERMISSION_CODE = 100;
     private Resources resources;
+    private UnicoCheckCamera unicoCheckCamera;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,15 +86,23 @@ public class LivenessActivity extends AppCompatActivity
         Bundle extras =  getIntent().getExtras();
         String unicoConfig = (String)extras.get("unicoConfig");
         UnicoConfig config = (new Gson()).fromJson(unicoConfig,UnicoConfig.class);
+
+        // Validação obrigatória da chave hostKey para evitar falhas silenciosas ou crashes no SDK
+        if (config == null || config.getHostKey() == null || config.getHostKey().trim().isEmpty()) {
+            CallLib.liveNess(null, "Chave 'hostKey' é obrigatória e não foi fornecida nas configurações.");
+            finish();
+            return;
+        }
+
         try {
-            new AcessoBio(this, this)
+            this.unicoCheckCamera = new AcessoBio(this, this)
                     .setAutoCapture(false)
                     .setSmartFrame(false)
                     .setTheme(unicoTheme)
                     .setTimeoutSession(50)
-                    .build()
-                    .prepareCamera(config, this)
-            ;
+                    .build();
+
+            this.unicoCheckCamera.prepareCamera(config, this);
         }catch (Exception e){
             Log.e(this.getClass().getSimpleName(),e.toString());
         }

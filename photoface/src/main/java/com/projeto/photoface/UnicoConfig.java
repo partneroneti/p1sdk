@@ -16,7 +16,7 @@ public class UnicoConfig implements AcessoBioConfigDataSource {
     @NonNull
     @Override
     public String getHostKey() {
-        return hostKey;
+        return hostKey != null ? hostKey : "";
     }
 
     public void setHostKey(String hostKey) {
@@ -25,7 +25,7 @@ public class UnicoConfig implements AcessoBioConfigDataSource {
 
     @Override
     public String getHostInfo() {
-        return hostInfo;
+        return hostInfo != null ? hostInfo : "";
     }
 
     public void setHostInfo(String hostInfo) {
@@ -34,7 +34,7 @@ public class UnicoConfig implements AcessoBioConfigDataSource {
 
     @Override
     public String getProjectId() {
-        return projectId;
+        return projectId != null ? projectId : "";
     }
 
     public void setProjectId(String projectId) {
@@ -43,7 +43,7 @@ public class UnicoConfig implements AcessoBioConfigDataSource {
 
     @Override
     public String getProjectNumber() {
-        return projectNumber;
+        return projectNumber != null ? projectNumber : "";
     }
 
     public void setProjectNumber(String projectNumber) {
@@ -51,7 +51,7 @@ public class UnicoConfig implements AcessoBioConfigDataSource {
     }
 
     public String getMobilesdkAppId() {
-        return mobilesdkAppId;
+        return mobilesdkAppId != null ? mobilesdkAppId : "";
     }
 
     public void setMobilesdkAppId(String mobilesdkAppId) {
@@ -61,7 +61,7 @@ public class UnicoConfig implements AcessoBioConfigDataSource {
     @NonNull
     @Override
     public String getBundleIdentifier() {
-        return bundleIdentifier;
+        return bundleIdentifier != null ? bundleIdentifier : "";
     }
 
     public void setBundleIdentifier(String bundleIdentifier) {
