@@ -17,7 +17,20 @@ allprojects {
         mavenLocal()
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
-        maven { url "https://maven-sdk.unico.run/sdk-mobile" }
+        maven { 
+            url 'https://jitpack.io'
+            content {
+                includeGroup "com.github.partneroneti"
+            }
+        }
+        maven { 
+            url "https://maven-sdk.unico.run/sdk-mobile"
+            content {
+                includeGroup "io.unico"
+                includeGroup "io.unico.liveness"
+                includeGroup "io.unico.fingerprint"
+                includeGroup "com.acesso.acessobio_android"
+            }
+        }
     }
 }
