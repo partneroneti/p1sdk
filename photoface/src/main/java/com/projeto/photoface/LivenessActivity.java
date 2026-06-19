@@ -43,6 +43,7 @@ public class LivenessActivity extends AppCompatActivity
 
     private static final int CAMERA_PERMISSION_CODE = 100;
     private Resources resources;
+    private UnicoCheckCamera unicoCheckCamera;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,9 +107,9 @@ public class LivenessActivity extends AppCompatActivity
                         }
                     }
 
-                    bio.build()
-                    .prepareCamera(config, this)
-            ;
+                    this.unicoCheckCamera = bio.build();
+
+                    this.unicoCheckCamera.prepareCamera(config, this);
         }catch (Exception e){
             Log.e(this.getClass().getSimpleName(),e.toString());
         }
