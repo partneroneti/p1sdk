@@ -8,22 +8,15 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.acesso.acessobio_android.AcessoBioListener;
 import com.acesso.acessobio_android.iAcessoBioSelfie;
 import com.acesso.acessobio_android.onboarding.AcessoBio;
-import com.acesso.acessobio_android.onboarding.AcessoBioConfigDataSource;
-import com.acesso.acessobio_android.onboarding.IAcessoBioBuilder;
 import com.acesso.acessobio_android.onboarding.IAcessoBioTheme;
 import com.acesso.acessobio_android.onboarding.camera.CameraListener;
 import com.acesso.acessobio_android.onboarding.camera.UnicoCheckCamera;
@@ -33,17 +26,16 @@ import com.acesso.acessobio_android.services.dto.ErrorBio;
 import com.acesso.acessobio_android.services.dto.ResultCamera;
 import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Optional;
-
-
 public class LivenessActivity extends AppCompatActivity
-        implements AcessoBioListener,iAcessoBioSelfie,CameraListener {
+        implements AcessoBioListener, iAcessoBioSelfie, CameraListener {
 
+    private static final String TAG = "P1SDK_Liveness";
+    private static final String SDK_VERSION = "2.0.16";
     private static final int CAMERA_PERMISSION_CODE = 100;
+
     private Resources resources;
     private UnicoCheckCamera unicoCheckCamera;
+    private String environmentLabel = "unknown";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,83 +43,77 @@ public class LivenessActivity extends AppCompatActivity
 
         this.resources = this.getBaseContext().getResources();
 
-        // Verifica se a versão do Android é 6.0 (API 23) ou superior
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            // Se for Android 6.0 ou superior, verificar e solicitar a permissão
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
             } else {
                 startLiveness(resources);
             }
         } else {
-            // Para Android 5.0 e 5.1, a permissão já foi concedida na instalação
             startLiveness(resources);
         }
-
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == CAMERA_PERMISSION_CODE) {
-            // Verifica se a permissão foi concedida
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                startLiveness(resources); // Inicia o liveness APENAS se a permissão for concedida
+                startLiveness(resources);
             } else {
-              CallLib.liveNess(null, "Permissão da câmera negada");
-              finish();
+                notifyError(buildDiagnosticError("onRequestPermissionsResult", "Permissão da câmera negada"));
             }
         }
-        }
+    }
 
     private void startLiveness(Resources resources) {
         IAcessoBioTheme unicoTheme = new UnicoTheme(resources);
 
-        Bundle extras =  getIntent().getExtras();
-        String unicoConfig = (String)extras.get("unicoConfig");
-        UnicoConfig config = (new Gson()).fromJson(unicoConfig,UnicoConfig.class);
-        config.setBundleIdentifier(getApplicationContext().getPackageName());
-        try {
-            AcessoBio bio=new AcessoBio(this, this);
+        Bundle extras = getIntent().getExtras();
+        if (extras == null || !extras.containsKey("unicoConfig")) {
+            notifyError(buildDiagnosticError("startLiveness", "unicoConfig ausente no Intent"));
+            return;
+        }
 
-                    bio.setAutoCapture(false)
+        String unicoConfig = extras.getString("unicoConfig");
+        UnicoConfig config = (new Gson()).fromJson(unicoConfig, UnicoConfig.class);
+        if (config == null) {
+            notifyError(buildDiagnosticError("startLiveness", "falha ao parsear unicoConfig"));
+            return;
+        }
+
+        config.setBundleIdentifier(getApplicationContext().getPackageName());
+        environmentLabel = config.getEnvironment() != null ? config.getEnvironment() : "unknown";
+
+        try {
+            AcessoBio bio = new AcessoBio(this, this);
+
+            bio.setAutoCapture(false)
                     .setSmartFrame(false)
                     .setTheme(unicoTheme)
                     .setTimeoutSession(50);
 
-                    if(config.getEnvironment()!=null){
-                        switch (config.getEnvironment()){
-                            case "DEV":
-                                bio.setEnvironment(Environment.UAT);
-                                break;
+            if (config.getEnvironment() != null) {
+                switch (config.getEnvironment()) {
+                    case "DEV":
+                        bio.setEnvironment(Environment.UAT);
+                        break;
+                    case "PRD":
+                        bio.setEnvironment(Environment.PROD);
+                        break;
+                }
+            }
 
-                            case "PRD":
-                                bio.setEnvironment(Environment.PROD);
-                                break;
-                        }
-                    }
-
-                    this.unicoCheckCamera = bio.build();
-
-                    this.unicoCheckCamera.prepareCamera(config, this);
-        }catch (Exception e){
-            Log.e(this.getClass().getSimpleName(),e.toString());
+            this.unicoCheckCamera = bio.build();
+            this.unicoCheckCamera.prepareCamera(config, this);
+        } catch (Exception e) {
+            notifyError(buildDiagnosticError("startLiveness", "exceção ao iniciar liveness: " + e.getMessage()));
         }
     }
 
     @Override
     public void onErrorAcessoBio(ErrorBio errorBio) {
-//        TextView textViewDescription = findViewById(R.id.textViewDescription);
-//        textViewDescription.setText(errorBio.getDescription());
-        String message= "";
-        if(errorBio!=null && errorBio.getDescription()!=null){
-            message = errorBio.getDescription();
-        }else {
-            message="erro inesperado no sdk";
-        }
-        CallLib.liveNess(null,
-                message);
-        finish();
+        notifyError(formatErrorBio("onErrorAcessoBio", errorBio));
     }
 
     @Override
@@ -138,26 +124,26 @@ public class LivenessActivity extends AppCompatActivity
 
     @Override
     public void onSystemClosedCameraTimeoutSession() {
-        setResult(Activity.RESULT_CANCELED);
-        finish();
+        notifyError(buildDiagnosticError("onSystemClosedCameraTimeoutSession", "timeout de sessão da câmera"));
     }
 
     @Override
     public void onSystemChangedTypeCameraTimeoutFaceInference() {
-        setResult(Activity.RESULT_CANCELED);
-        finish();
+        notifyError(buildDiagnosticError(
+                "onSystemChangedTypeCameraTimeoutFaceInference",
+                "timeout de inferência facial"
+        ));
     }
 
     @Override
     public void onSuccessSelfie(ResultCamera resultCamera) {
-        CallLib.liveNess(resultCamera,null);
+        CallLib.liveNess(resultCamera, null);
         finish();
     }
 
     @Override
     public void onErrorSelfie(ErrorBio errorBio) {
-        CallLib.liveNess(null, errorBio.getDescription());
-        finish();
+        notifyError(formatErrorBio("onErrorSelfie", errorBio));
     }
 
     @Override
@@ -166,8 +152,46 @@ public class LivenessActivity extends AppCompatActivity
     }
 
     @Override
-    public void onCameraFailed(String s) {
+    public void onCameraFailed(String message) {
+        String detail = message != null && !message.isEmpty() ? message : "motivo não informado pela SDK";
+        notifyError(buildDiagnosticError("onCameraFailed", detail));
+    }
 
-        Log.e("ERROR", s);
+    private void notifyError(String message) {
+        Log.e(TAG, message);
+        CallLib.liveNess(null, message);
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
+
+    private String formatErrorBio(String source, ErrorBio errorBio) {
+        if (errorBio == null) {
+            return buildDiagnosticError(source, "ErrorBio nulo");
+        }
+
+        String detail = String.format(
+                "code=%s desc=%s",
+                errorBio.getCode(),
+                errorBio.getDescription() != null ? errorBio.getDescription() : "null"
+        );
+        return buildDiagnosticError(source, detail);
+    }
+
+    private String buildDiagnosticError(String source, String detail) {
+        return String.format(
+                "[%s] %s | device=%s %s | android=%s | p1sdk=%s | env=%s | cameraPermission=%s",
+                source,
+                detail,
+                Build.MANUFACTURER,
+                Build.MODEL,
+                Build.VERSION.RELEASE,
+                SDK_VERSION,
+                environmentLabel,
+                hasCameraPermission() ? "GRANTED" : "DENIED"
+        );
+    }
+
+    private boolean hasCameraPermission() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }
 }
