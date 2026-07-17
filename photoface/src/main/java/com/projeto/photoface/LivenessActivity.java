@@ -30,7 +30,7 @@ public class LivenessActivity extends AppCompatActivity
         implements AcessoBioListener, iAcessoBioSelfie, CameraListener {
 
     private static final String TAG = "P1SDK_Liveness";
-    private static final String SDK_VERSION = "2.0.16";
+    private static final String SDK_VERSION = "2.0.17";
     private static final int CAMERA_PERMISSION_CODE = 100;
 
     private Resources resources;
