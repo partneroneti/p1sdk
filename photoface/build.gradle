@@ -6,7 +6,7 @@ plugins {
     }
 
 group 'br.com.partner1'
-version '1.0'
+version '2.0.15'
 
 android {
     compileSdk 35
@@ -62,7 +62,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.otaliastudios:cameraview:2.7.2'
-    implementation 'io.unico:capture:6.4.0'
+    implementation 'io.unico:capture:6.7.0'
 
 }
 
