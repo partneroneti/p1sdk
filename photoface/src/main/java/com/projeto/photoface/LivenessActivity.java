@@ -30,10 +30,11 @@ public class LivenessActivity extends AppCompatActivity
         implements AcessoBioListener, iAcessoBioSelfie, CameraListener {
 
     private static final String TAG = "P1SDK_Liveness";
-    private static final String SDK_VERSION = "2.0.17";
+    private static final String SDK_VERSION = "2.0.18";
     private static final int CAMERA_PERMISSION_CODE = 100;
 
     private Resources resources;
+    private AcessoBio acessoBio;
     private UnicoCheckCamera unicoCheckCamera;
     private String environmentLabel = "unknown";
 
@@ -82,13 +83,18 @@ public class LivenessActivity extends AppCompatActivity
             return;
         }
 
+        if (config.getHostKey() == null || config.getHostKey().trim().isEmpty()) {
+            notifyError(buildDiagnosticError("startLiveness", "Chave de configuração (hostKey) ausente ou inválida"));
+            return;
+        }
+
         config.setBundleIdentifier(getApplicationContext().getPackageName());
         environmentLabel = config.getEnvironment() != null ? config.getEnvironment() : "unknown";
 
         try {
-            AcessoBio bio = new AcessoBio(this, this);
+            this.acessoBio = new AcessoBio(this, this);
 
-            bio.setAutoCapture(false)
+            this.acessoBio.setAutoCapture(false)
                     .setSmartFrame(false)
                     .setTheme(unicoTheme)
                     .setTimeoutSession(50);
@@ -96,15 +102,15 @@ public class LivenessActivity extends AppCompatActivity
             if (config.getEnvironment() != null) {
                 switch (config.getEnvironment()) {
                     case "DEV":
-                        bio.setEnvironment(Environment.UAT);
+                        this.acessoBio.setEnvironment(Environment.UAT);
                         break;
                     case "PRD":
-                        bio.setEnvironment(Environment.PROD);
+                        this.acessoBio.setEnvironment(Environment.PROD);
                         break;
                 }
             }
 
-            this.unicoCheckCamera = bio.build();
+            this.unicoCheckCamera = this.acessoBio.build();
             this.unicoCheckCamera.prepareCamera(config, this);
         } catch (Exception e) {
             notifyError(buildDiagnosticError("startLiveness", "exceção ao iniciar liveness: " + e.getMessage()));

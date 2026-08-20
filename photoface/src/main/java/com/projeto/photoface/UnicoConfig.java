@@ -8,13 +8,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class UnicoConfig implements AcessoBioConfigDataSource {
 
-    private String hostKey;
-    private String environment;
-    private String bundleIdentifier;
+    private String hostKey = "";
+    private String environment = "";
+    private String bundleIdentifier = "";
 
 
     public String getEnvironment() {
-        return environment;
+        return environment != null ? environment : "";
     }
 
     public void setEnvironment(String environment) {
@@ -24,7 +24,7 @@ public class UnicoConfig implements AcessoBioConfigDataSource {
     @NonNull
     @Override
     public String getBundleIdentifier() {
-        return bundleIdentifier;
+        return bundleIdentifier != null ? bundleIdentifier : "";
     }
 
     public void setBundleIdentifier(String bundleIdentifier) {
@@ -36,7 +36,7 @@ public class UnicoConfig implements AcessoBioConfigDataSource {
     @NonNull
     @Override
     public String getHostKey() {
-        return hostKey;
+        return hostKey != null ? hostKey : "";
     }
 
     public void setHostKey(String hostKey) {
