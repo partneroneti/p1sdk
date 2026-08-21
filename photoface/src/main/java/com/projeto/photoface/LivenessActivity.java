@@ -30,7 +30,7 @@ public class LivenessActivity extends AppCompatActivity
         implements AcessoBioListener, iAcessoBioSelfie, CameraListener {
 
     private static final String TAG = "P1SDK_Liveness";
-    private static final String SDK_VERSION = "2.0.18";
+    private static final String SDK_VERSION = "2.0.19";
     private static final int CAMERA_PERMISSION_CODE = 100;
 
     private Resources resources;
@@ -80,11 +80,6 @@ public class LivenessActivity extends AppCompatActivity
         UnicoConfig config = (new Gson()).fromJson(unicoConfig, UnicoConfig.class);
         if (config == null) {
             notifyError(buildDiagnosticError("startLiveness", "falha ao parsear unicoConfig"));
-            return;
-        }
-
-        if (config.getHostKey() == null || config.getHostKey().trim().isEmpty()) {
-            notifyError(buildDiagnosticError("startLiveness", "Chave de configuração (hostKey) ausente ou inválida"));
             return;
         }
 
