@@ -3,13 +3,19 @@ package com.projeto.photoface;
 import androidx.annotation.NonNull;
 
 import com.acesso.acessobio_android.onboarding.AcessoBioConfigDataSource;
+import com.google.gson.annotations.SerializedName;
 
 import org.jetbrains.annotations.NotNull;
 
 public class UnicoConfig implements AcessoBioConfigDataSource {
 
+    @SerializedName("hostKey")
     private String hostKey = "";
+
+    @SerializedName("environment")
     private String environment = "";
+
+    @SerializedName("bundleIdentifier")
     private String bundleIdentifier = "";
 
 

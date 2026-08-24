@@ -77,11 +77,13 @@ public class LivenessActivity extends AppCompatActivity
         }
 
         String unicoConfig = extras.getString("unicoConfig");
+        Log.d(TAG, "unicoConfig raw: " + unicoConfig); // diagnóstico: JSON que chegou no Intent
         UnicoConfig config = (new Gson()).fromJson(unicoConfig, UnicoConfig.class);
         if (config == null) {
             notifyError(buildDiagnosticError("startLiveness", "falha ao parsear unicoConfig"));
             return;
         }
+        Log.d(TAG, "environment parsed: '" + config.getEnvironment() + "'"); // diagnóstico: campo após Gson
 
         config.setBundleIdentifier(getApplicationContext().getPackageName());
 
