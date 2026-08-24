@@ -57,7 +57,12 @@ public class CallLib {
         mContext = context;
 
         Intent intent = new Intent(context, LivenessActivity.class);
-        intent.putExtra("unicoConfig",new String(Base64.decode(certKey.getBytes(StandardCharsets.UTF_8),Base64.DEFAULT)));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        String decodedJson = new String(
+                Base64.decode(certKey.getBytes(StandardCharsets.UTF_8), Base64.DEFAULT),
+                StandardCharsets.UTF_8  // charset explícito: evita corrupção em dispositivos com locale diferente
+        );
+        intent.putExtra("unicoConfig", decodedJson);
 
         context.startActivity(intent);
 

@@ -30,7 +30,7 @@ public class LivenessActivity extends AppCompatActivity
         implements AcessoBioListener, iAcessoBioSelfie, CameraListener {
 
     private static final String TAG = "P1SDK_Liveness";
-    private static final String SDK_VERSION = "2.0.19";
+    private static final String SDK_VERSION = "2.0.20";
     private static final int CAMERA_PERMISSION_CODE = 100;
 
     private Resources resources;
@@ -84,7 +84,14 @@ public class LivenessActivity extends AppCompatActivity
         }
 
         config.setBundleIdentifier(getApplicationContext().getPackageName());
-        environmentLabel = config.getEnvironment() != null ? config.getEnvironment() : "unknown";
+
+        Environment environment = resolveEnvironment(config.getEnvironment());
+        if (environment == null) {
+            notifyError(buildDiagnosticError("startLiveness",
+                    "environment inválido ou ausente no JSON: '" + config.getEnvironment() + "'"));
+            return;
+        }
+        environmentLabel = environment == Environment.PROD ? "PROD" : "UAT";
 
         try {
             this.acessoBio = new AcessoBio(this, this);
@@ -92,24 +99,31 @@ public class LivenessActivity extends AppCompatActivity
             this.acessoBio.setAutoCapture(false)
                     .setSmartFrame(false)
                     .setTheme(unicoTheme)
-                    .setTimeoutSession(50);
-
-            if (config.getEnvironment() != null) {
-                switch (config.getEnvironment()) {
-                    case "DEV":
-                        this.acessoBio.setEnvironment(Environment.UAT);
-                        break;
-                    case "PRD":
-                        this.acessoBio.setEnvironment(Environment.PROD);
-                        break;
-                }
-            }
+                    .setTimeoutSession(50)
+                    .setEnvironment(environment);
 
             this.unicoCheckCamera = this.acessoBio.build();
             this.unicoCheckCamera.prepareCamera(config, this);
         } catch (Exception e) {
             notifyError(buildDiagnosticError("startLiveness", "exceção ao iniciar liveness: " + e.getMessage()));
         }
+    }
+
+    private Environment resolveEnvironment(String env) {
+        if (env == null || env.trim().isEmpty()) {
+            return null;
+        }
+        String normalized = env.trim().toUpperCase();
+        if (normalized.contains("DEV") || normalized.contains("UAT")
+                || normalized.contains("HOMOLOG") || normalized.equals("1")
+                || normalized.contains("STA")) {
+            return Environment.UAT;
+        }
+        if (normalized.contains("PRD") || normalized.contains("PROD")
+                || normalized.contains("PRODUCTION") || normalized.equals("2")) {
+            return Environment.PROD;
+        }
+        return null; // environment desconhecido: falha explícita, sem fallback
     }
 
     @Override
